@@ -452,15 +452,40 @@
   // ---------- announcements page ----------
   function announcementsPage() {
     var allAnnouncements = S.announcements || [];
-    var activeFilter = "all";
+    var activeUni = "all";
     var searchQuery = "";
+
+    var universities = [
+      {
+        id: "mly-smail",
+        name: "Moulay Ismail University",
+        short: "Mly Smail",
+        period: "2026 – Present",
+        status: "Current Assignment",
+        icon: "🏛️"
+      },
+      {
+        id: "aui",
+        name: "Al Akhawayn University (AUI)",
+        short: "AUI",
+        period: "2020 – Present",
+        status: "Adjunct Faculty",
+        icon: "🎓"
+      },
+      {
+        id: "s-mly-sliman",
+        name: "Sultan Moulay Slimane University",
+        short: "S Mly Sliman",
+        period: "2019 – 2025",
+        status: "Associate Professor",
+        icon: "📚"
+      }
+    ];
 
     function render() {
       var filtered = allAnnouncements.filter(function (a) {
-        var matchFilter = activeFilter === "all" ||
-          a.course === activeFilter ||
-          (a.category && a.category.toLowerCase().indexOf(activeFilter.toLowerCase()) !== -1);
-        if (!matchFilter) return false;
+        var matchUni = activeUni === "all" || a.university === activeUni;
+        if (!matchUni) return false;
 
         if (!searchQuery) return true;
         var q = searchQuery.toLowerCase();
@@ -468,53 +493,42 @@
         var inSummary = a.summary.toLowerCase().indexOf(q) !== -1;
         var inContent = (a.content || []).join(" ").toLowerCase().indexOf(q) !== -1;
         var inCourse = (a.courseName || "").toLowerCase().indexOf(q) !== -1;
-        return inTitle || inSummary || inContent || inCourse;
+        var inUni = (a.universityName || "").toLowerCase().indexOf(q) !== -1 || (a.universityShort || "").toLowerCase().indexOf(q) !== -1;
+        return inTitle || inSummary || inContent || inCourse || inUni;
       });
 
-      filtered.sort(function (a, b) {
-        if (a.pinned && !b.pinned) return -1;
-        if (!a.pinned && b.pinned) return 1;
-        return (b.timestamp || 0) - (a.timestamp || 0);
-      });
+      var filterButtonsHtml = '<button class="' + (activeUni === "all" ? "on" : "") + '" data-u="all">All Universities (' + allAnnouncements.length + ')</button>' +
+        universities.map(function (u) {
+          var cnt = allAnnouncements.filter(function (x) { return x.university === u.id; }).length;
+          return '<button class="' + (activeUni === u.id ? "on" : "") + '" data-u="' + u.id + '">' +
+            u.icon + ' ' + esc(u.name) + ' <span class="tab-period">' + esc(u.period) + '</span> (' + cnt + ')' +
+          '</button>';
+        }).join("");
 
-      var filterOpts = [
-        { id: "all", name: "All Notices" },
-        { id: "Deadlines", name: "Deadlines" },
-        { id: "public-speaking", name: "Public Speaking" },
-        { id: "business-writing", name: "Business Writing" },
-        { id: "composition", name: "Composition (S2)" },
-        { id: "english-grammar", name: "English Grammar" }
-      ];
+      var unisToRender = activeUni === "all" ?
+        universities :
+        universities.filter(function (u) { return u.id === activeUni; });
 
-      var html = '<div class="wrap announcements-wrap">' +
-        '<div class="announcements-header-row">' +
-          '<div>' +
-            '<div class="crumbs"><a href="#/">Home</a> / Announcements</div>' +
-            '<h1 style="margin-bottom:6px">Course Announcements & Notices</h1>' +
-            '<p style="color:var(--muted);margin:0">Official deadlines, class schedules, exam updates, and academic guidelines from Dr. Naciri.</p>' +
+      var groupsHtml = unisToRender.map(function (u) {
+        var list = filtered.filter(function (a) { return a.university === u.id; });
+        if (list.length === 0) return "";
+
+        list.sort(function (a, b) {
+          if (a.pinned && !b.pinned) return -1;
+          if (!a.pinned && b.pinned) return 1;
+          return (b.timestamp || 0) - (a.timestamp || 0);
+        });
+
+        return '<div class="ann-uni-group" id="uni-group-' + esc(u.id) + '">' +
+          '<div class="ann-uni-header">' +
+            '<h2>' + u.icon + ' ' + esc(u.name) + '</h2>' +
+            '<div class="ann-uni-header-meta">' +
+              '<span class="ann-uni-period-badge">📅 ' + esc(u.period) + '</span>' +
+              '<span class="ann-uni-status-badge">' + esc(u.status) + '</span>' +
+            '</div>' +
           '</div>' +
-          '<span class="badge accent">' + allAnnouncements.length + ' Announcements</span>' +
-        '</div>' +
-
-        '<div class="announcements-toolbar">' +
-          '<div class="announcements-filters">' +
-            filterOpts.map(function (o) {
-              var count = allAnnouncements.filter(function (x) {
-                return o.id === "all" || x.course === o.id || (x.category && x.category.toLowerCase().indexOf(o.id.toLowerCase()) !== -1);
-              }).length;
-              return '<button class="' + (activeFilter === o.id ? "on" : "") + '" data-af="' + o.id + '">' + esc(o.name) + ' (' + count + ')</button>';
-            }).join("") +
-          '</div>' +
-          '<div class="announcements-search-box">' +
-            '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
-            '<input id="ann-search-input" type="search" placeholder="Search notices..." value="' + esc(searchQuery) + '">' +
-          '</div>' +
-        '</div>' +
-
-        '<div class="announcements-list">' +
-          (filtered.length === 0 ?
-            '<div class="card" style="padding:40px;text-align:center;color:var(--muted)">No announcements found matching your filter or search query.</div>' :
-            filtered.map(function (a) {
+          '<div class="announcements-list">' +
+            list.map(function (a) {
               var pClass = a.priority || "info";
               var pLabel = a.priorityLabel || (pClass.charAt(0).toUpperCase() + pClass.slice(1));
               return '<div class="ann-card ' + (a.pinned ? "pinned" : "") + '" id="' + esc(a.id) + '">' +
@@ -522,6 +536,7 @@
                 '<div class="ann-top">' +
                   '<div class="ann-tags">' +
                     '<span class="ann-badge ' + esc(pClass) + '">' + esc(pLabel) + '</span>' +
+                    '<span class="ann-university-pill">' + esc(u.short) + ' · ' + esc(u.period) + '</span>' +
                     '<span class="ann-course-pill">' + esc(a.courseName || a.course) + '</span>' +
                   '</div>' +
                   '<span class="ann-date">📅 ' + esc(a.date) + '</span>' +
@@ -538,9 +553,32 @@
                     '<a class="btn ghost btn-sm" href="' + esc(a.link.url) + '">' + esc(a.link.text) + ' →</a>' +
                   '</div>' : '') +
               '</div>';
-            }).join("")
-          ) +
+            }).join("") +
+          '</div>' +
+        '</div>';
+      }).join("");
+
+      var html = '<div class="wrap announcements-wrap">' +
+        '<div class="announcements-header-row">' +
+          '<div>' +
+            '<div class="crumbs"><a href="#/">Home</a> / Announcements</div>' +
+            '<h1 style="margin-bottom:6px">Course Announcements & Notices</h1>' +
+            '<p style="color:var(--muted);margin:0">Official academic announcements, continuous assessment deadlines, and presentation timetables organized by university.</p>' +
+          '</div>' +
+          '<span class="badge accent">' + allAnnouncements.length + ' Announcements</span>' +
         '</div>' +
+
+        '<div class="announcements-toolbar">' +
+          '<div class="announcements-filters">' +
+            filterButtonsHtml +
+          '</div>' +
+          '<div class="announcements-search-box">' +
+            '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
+            '<input id="ann-search-input" type="search" placeholder="Search notices by university, topic, or keyword..." value="' + esc(searchQuery) + '">' +
+          '</div>' +
+        '</div>' +
+
+        (groupsHtml || '<div class="card" style="padding:40px;text-align:center;color:var(--muted)">No announcements found matching your selection.</div>') +
       '</div>';
 
       app.innerHTML = html;
@@ -548,8 +586,8 @@
 
       app.querySelectorAll(".announcements-filters button").forEach(function (btn) {
         btn.addEventListener("click", function () {
-          activeFilter = btn.dataset.af;
-          if (activeFilter === "all") searchQuery = "";
+          activeUni = btn.dataset.u;
+          if (activeUni === "all") searchQuery = "";
           render();
         });
       });

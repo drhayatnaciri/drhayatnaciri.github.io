@@ -262,12 +262,71 @@ a.card:hover { transform: translateY(-2px); border-color: var(--accent); }
 .announcements-header-row { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
 .announcements-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
 .announcements-filters { display: flex; gap: 6px; flex-wrap: wrap; }
-.announcements-filters button { border: 1px solid var(--line); background: var(--surface); color: var(--muted); padding: 6px 12px; border-radius: 999px; font: inherit; font-size: .84rem; cursor: pointer; transition: all .15s; }
+.announcements-filters button { border: 1px solid var(--line); background: var(--surface); color: var(--muted); padding: 6px 12px; border-radius: 999px; font: inherit; font-size: .84rem; cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 5px; }
 .announcements-filters button.on { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 600; }
+.announcements-filters button .tab-period { font-size: .74rem; opacity: .8; font-weight: 500; }
+.announcements-filters button.on .tab-period { opacity: 1; color: color-mix(in srgb, var(--accent) 75%, #fff); }
 .announcements-search-box { position: relative; min-width: 240px; }
 .announcements-search-box input { width: 100%; padding: 7px 12px 7px 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .85rem; }
 .announcements-search-box input:focus { border-color: var(--accent); outline: none; }
 .announcements-search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+
+/* University Section Group */
+.ann-uni-group { margin-bottom: 34px; }
+.ann-uni-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.ann-uni-header h2 {
+  font-size: 1.12rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--navy);
+}
+.ann-uni-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ann-uni-period-badge {
+  font-size: .78rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.ann-uni-status-badge {
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.ann-university-pill {
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent-soft) 40%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
 
 .announcements-list { display: flex; flex-direction: column; gap: 18px; }
 .ann-card {

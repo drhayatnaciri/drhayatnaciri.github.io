@@ -2792,7 +2792,11 @@ window.SITE = {
  ],
  "announcements": [
   {
-   "id": "ann-1",
+   "id": "ann-umi-1",
+   "university": "mly-smail",
+   "universityName": "Moulay Ismail University",
+   "universityShort": "Mly Smail",
+   "universityPeriod": "2026 – Present",
    "title": "Continuous Assessment: Quiz Screenshot Submission Deadline",
    "date": "Nov 02, 2026",
    "timestamp": 1793577600000,
@@ -2801,10 +2805,10 @@ window.SITE = {
    "priorityLabel": "Urgent Deadline",
    "pinned": true,
    "course": "all",
-   "courseName": "All Courses",
+   "courseName": "All UMI Courses",
    "summary": "Final reminder to complete online unit reading quizzes and submit your result card screenshots before Sunday midnight.",
    "content": [
-    "All students enrolled in Composition (S2), Writing for Business, and Public Speaking must complete their assigned unit quizzes on the platform.",
+    "All students enrolled in Composition (S2) and English Grammar at Moulay Ismail University must complete their assigned unit quizzes on the platform.",
     "Ensure your screenshot clearly shows your student name, final score (minimum 2/3 for passing credit), and the generated verification code (e.g., VER-HN-XXXX).",
     "Send your submission by clicking the \"Email Results Screenshot\" button on your result card or directly to Dr. Naciri's academic email before Sunday, November 15, 2026 at 23:59."
    ],
@@ -2814,56 +2818,16 @@ window.SITE = {
    }
   },
   {
-   "id": "ann-2",
-   "title": "COM 1301 Midterm Debate Schedule & Time Slot Extension",
-   "date": "Oct 28, 2026",
-   "timestamp": 1793145600000,
-   "category": "Oral Presentations",
-   "priority": "important",
-   "priorityLabel": "Important Notice",
-   "pinned": false,
-   "course": "public-speaking",
-   "courseName": "Public Speaking & Debating",
-   "summary": "Midterm debate schedule posted for Amphi B. Speech slots have been extended to 7 minutes to accommodate Monroe's Motivated Sequence.",
-   "content": [
-    "Midterm debate rounds will take place in Amphi B on Wednesday, November 11, and Thursday, November 12, 2026.",
-    "Per student feedback regarding speech pacing, presentation slots have been extended from 5 minutes to 7 minutes per speaker.",
-    "Please arrive 15 minutes before your scheduled debate slot and bring 2 printed copies of your key-word outline for evaluation."
-   ],
-   "link": {
-    "text": "View Public Speaking Material",
-    "url": "#/course/public-speaking/delivery"
-   }
-  },
-  {
-   "id": "ann-3",
-   "title": "Writing for Business: Modules 06 & 07 Supplementary Case Studies Live",
-   "date": "Oct 18, 2026",
-   "timestamp": 1792281600000,
-   "category": "Course Material",
-   "priority": "update",
-   "priorityLabel": "New Material",
-   "pinned": false,
-   "course": "business-writing",
-   "courseName": "Writing for Business",
-   "summary": "New slide decks covering Harvard-style Resumé Architecture and the 6-Step Case Study Analysis are now accessible.",
-   "content": [
-    "The slide presentations for Module 06 (Resumé Architecture & Design) and Module 07 (Case Study Analysis) have been uploaded to the course material section.",
-    "Please review the \"8 words that weaken emails\" in Module 04 before submitting your mock corporate memo next week.",
-    "Self-assessment quizzes for both modules are now active in the Quizzes section."
-   ],
-   "link": {
-    "text": "Explore Business Writing Slides",
-    "url": "#/course/business-writing"
-   }
-  },
-  {
-   "id": "ann-4",
-   "title": "Composition S2: In-Class Peer Review for Unit 07 Paragraph Drafts",
+   "id": "ann-umi-2",
+   "university": "mly-smail",
+   "universityName": "Moulay Ismail University",
+   "universityShort": "Mly Smail",
+   "universityPeriod": "2026 – Present",
+   "title": "Composition (S2): In-Class Peer Review for Unit 07 Paragraph Drafts",
    "date": "Oct 10, 2026",
    "timestamp": 1791590400000,
    "category": "Class Schedule",
-   "priority": "info",
+   "priority": "important",
    "priorityLabel": "Class Activity",
    "pinned": false,
    "course": "composition",
@@ -2872,7 +2836,7 @@ window.SITE = {
    "content": [
     "Next Monday's workshop will be dedicated to peer feedback on topic sentence precision, paragraph unity, and comma splice prevention.",
     "Consult the Unit 07 slides on transitional signals and coherence before finalizing your paragraph draft.",
-    "The peer review checklist will count toward your in-class participation mark."
+    "The peer review checklist will count toward your in-class continuous evaluation mark."
    ],
    "link": {
     "text": "Open Composition Units",
@@ -2880,8 +2844,12 @@ window.SITE = {
    }
   },
   {
-   "id": "ann-5",
-   "title": "Fall Term 2026 Weekly Office Hours & Consultation Schedule",
+   "id": "ann-umi-3",
+   "university": "mly-smail",
+   "universityName": "Moulay Ismail University",
+   "universityShort": "Mly Smail",
+   "universityPeriod": "2026 – Present",
+   "title": "Fall Term 2026 Weekly Office Hours at FLSH Meknès (Room 214)",
    "date": "Sep 22, 2026",
    "timestamp": 1790035200000,
    "category": "Office Hours",
@@ -2889,7 +2857,7 @@ window.SITE = {
    "priorityLabel": "Advising Hours",
    "pinned": false,
    "course": "all",
-   "courseName": "All Courses",
+   "courseName": "All UMI Courses",
    "summary": "Dr. Naciri is available for walk-in student consultations every Tuesday and Thursday at FLSH Meknès.",
    "content": [
     "Office Location: Room 214, English Studies Department, Faculty of Letters and Human Sciences (FLSH), Moulay Ismail University.",
@@ -2899,8 +2867,12 @@ window.SITE = {
    "link": null
   },
   {
-   "id": "ann-6",
-   "title": "English Grammar: Supplementary Conditional Inversion Drills Uploaded",
+   "id": "ann-umi-4",
+   "university": "mly-smail",
+   "universityName": "Moulay Ismail University",
+   "universityShort": "Mly Smail",
+   "universityPeriod": "2026 – Present",
+   "title": "English Grammar: Supplementary Conditional Inversion Practice Drills",
    "date": "Sep 14, 2026",
    "timestamp": 1789344000000,
    "category": "Course Material",
@@ -2917,6 +2889,156 @@ window.SITE = {
    "link": {
     "text": "View Grammar Deck",
     "url": "#/course/english-grammar"
+   }
+  },
+  {
+   "id": "ann-aui-1",
+   "university": "aui",
+   "universityName": "Al Akhawayn University (AUI)",
+   "universityShort": "AUI",
+   "universityPeriod": "2020 – Present",
+   "title": "COM 1301 Midterm Debate Schedule & Time Slot Extension",
+   "date": "Oct 28, 2026",
+   "timestamp": 1793145600000,
+   "category": "Oral Presentations",
+   "priority": "important",
+   "priorityLabel": "Important Notice",
+   "pinned": false,
+   "course": "public-speaking",
+   "courseName": "Public Speaking & Debating (COM 1301)",
+   "summary": "Midterm debate schedule posted for Amphi B. Speech slots have been extended to 7 minutes to accommodate Monroe's Motivated Sequence.",
+   "content": [
+    "Midterm debate rounds will take place in Amphi B on Wednesday, November 11, and Thursday, November 12, 2026.",
+    "Per student feedback regarding speech pacing, presentation slots have been extended from 5 minutes to 7 minutes per speaker.",
+    "Please arrive 15 minutes before your scheduled debate slot and bring 2 printed copies of your key-word outline for evaluation."
+   ],
+   "link": {
+    "text": "View Public Speaking Material",
+    "url": "#/course/public-speaking/delivery"
+   }
+  },
+  {
+   "id": "ann-aui-2",
+   "university": "aui",
+   "universityName": "Al Akhawayn University (AUI)",
+   "universityShort": "AUI",
+   "universityPeriod": "2020 – Present",
+   "title": "Annual AUI Parliamentary Debate Tournament & Workshop Series",
+   "date": "Mar 18, 2024",
+   "timestamp": 1710720000000,
+   "category": "Campus Event",
+   "priority": "update",
+   "priorityLabel": "Campus Event",
+   "pinned": false,
+   "course": "public-speaking",
+   "courseName": "Public Speaking & Debating",
+   "summary": "Registration open for the inter-school parliamentary debate competition hosted by the School of Humanities and Social Sciences (SHSS).",
+   "content": [
+    "The annual AUI debate tournament will feature teams from across schools debating current policy and ethical topics.",
+    "Special workshops on rebuttal strategy, refutation flows, and audience analysis will be offered ahead of the preliminary rounds.",
+    "All registered COM 1301 students receive debate participation credits."
+   ],
+   "link": {
+    "text": "Explore Debate Topics",
+    "url": "#/course/public-speaking"
+   }
+  },
+  {
+   "id": "ann-aui-3",
+   "university": "aui",
+   "universityName": "Al Akhawayn University (AUI)",
+   "universityShort": "AUI",
+   "universityPeriod": "2020 – Present",
+   "title": "Leadership & Communication: Cross-Cultural Negotiation Case Studies",
+   "date": "Nov 15, 2022",
+   "timestamp": 1668470400000,
+   "category": "Course Notice",
+   "priority": "info",
+   "priorityLabel": "Case Study",
+   "pinned": false,
+   "course": "leadership-communication",
+   "courseName": "Leadership and Communication",
+   "summary": "Uploaded supplemental case studies on high-context versus low-context leadership styles in multinational teams.",
+   "content": [
+    "Students should review Case 04 on cross-cultural negotiation dynamics prior to next week's seminar simulation.",
+    "Focus on identifying communication breakdown points and designing culturally adaptive mediation proposals."
+   ],
+   "link": null
+  },
+  {
+   "id": "ann-smsu-1",
+   "university": "s-mly-sliman",
+   "universityName": "Sultan Moulay Slimane University",
+   "universityShort": "S Mly Sliman",
+   "universityPeriod": "2019 – 2025",
+   "title": "Writing for Business: Modules 06 & 07 Resumé Architecture & Case Studies",
+   "date": "May 20, 2024",
+   "timestamp": 1716163200000,
+   "category": "Course Material",
+   "priority": "update",
+   "priorityLabel": "Course Material",
+   "pinned": false,
+   "course": "business-writing",
+   "courseName": "Writing for Business",
+   "summary": "Slide presentations covering Harvard-style Resumé Architecture and 6-Step Case Study Analysis are uploaded.",
+   "content": [
+    "The slide presentations for Module 06 (Resumé Architecture & Design) and Module 07 (Case Study Analysis) have been added to the course repository.",
+    "Includes sample CV templates and executive email checklists for corporate communication assignments.",
+    "Self-assessment quizzes are available for self-paced review."
+   ],
+   "link": {
+    "text": "Explore Business Writing Slides",
+    "url": "#/course/business-writing"
+   }
+  },
+  {
+   "id": "ann-smsu-2",
+   "university": "s-mly-sliman",
+   "universityName": "Sultan Moulay Slimane University",
+   "universityShort": "S Mly Sliman",
+   "universityPeriod": "2019 – 2025",
+   "title": "Executive Memo Writing: Direct vs. Indirect Approach Guidelines",
+   "date": "Nov 14, 2023",
+   "timestamp": 1699920000000,
+   "category": "Academic Notice",
+   "priority": "important",
+   "priorityLabel": "Academic Notice",
+   "pinned": false,
+   "course": "business-writing",
+   "courseName": "Writing for Business",
+   "summary": "Detailed guidelines on structuring corporate memorandums, statements of work, and executive proposals.",
+   "content": [
+    "Please refer to the decision tree for choosing between direct and indirect structuring based on audience receptivity.",
+    "Ensure all mock memo drafts strictly avoid jargon and adhere to the 1-page executive format."
+   ],
+   "link": {
+    "text": "View Business Writing Material",
+    "url": "#/course/business-writing"
+   }
+  },
+  {
+   "id": "ann-smsu-3",
+   "university": "s-mly-sliman",
+   "universityName": "Sultan Moulay Slimane University",
+   "universityShort": "S Mly Sliman",
+   "universityPeriod": "2019 – 2025",
+   "title": "Internship Inquiry Correspondence: Eliminating Weak Words in Formal Emails",
+   "date": "Apr 10, 2021",
+   "timestamp": 1618012800000,
+   "category": "Professional Skills",
+   "priority": "info",
+   "priorityLabel": "Professional Skills",
+   "pinned": false,
+   "course": "business-writing",
+   "courseName": "Writing for Business",
+   "summary": "Reference guide on the \"8 words that weaken professional emails\" for students preparing internship inquiries.",
+   "content": [
+    "Review the formal email guidelines in Module 04 before drafting internship cover letters and introductory correspondence.",
+    "Clear, assertive phrasing significantly increases recruiter response rates."
+   ],
+   "link": {
+    "text": "Review Email Guidelines",
+    "url": "#/course/business-writing"
    }
   }
  ]

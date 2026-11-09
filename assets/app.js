@@ -72,8 +72,19 @@
 
   function aboutPage() {
     var p = S.profile;
+    var pinnedAnn = (S.announcements || []).filter(function (a) { return a.pinned; })[0];
+    var bannerHtml = pinnedAnn ?
+      '<div class="announcement-banner">' +
+        '<div class="announcement-banner-left">' +
+          '<span class="banner-pill">Notice</span>' +
+          '<span class="banner-text"><strong>' + esc(pinnedAnn.title) + '</strong> — ' + esc(pinnedAnn.summary) + '</span>' +
+        '</div>' +
+        '<a class="banner-link" href="#/announcements">View details →</a>' +
+      '</div>' : '';
+
     app.innerHTML =
       '<div class="wrap">' +
+        bannerHtml +
         '<section class="hero"><div class="wrap">' +
           '<div class="portrait"><img src="' + esc(p.photo) + '" alt="Portrait of ' + esc(p.name) + '"></div>' +
           '<div><p class="eyebrow">' + esc(p.location) + "</p><h1>" + esc(p.name) + "</h1>" +
@@ -82,6 +93,7 @@
           '<div class="actions">' +
             '<a class="btn primary" href="#/courses">Course material</a>' +
             '<a class="btn ghost" href="#/quizzes">Reading quizzes</a>' +
+            '<a class="btn ghost" href="#/announcements">Announcements</a>' +
             '<a class="btn ghost" href="#/comments">Student feedback</a>' +
           '</div></div>' +
         "</div></section>" +
@@ -435,6 +447,128 @@
       toast("Quiz submitted! Here is your verified result card.");
       quizPage(courseId, unitId);
     });
+  }
+
+  // ---------- announcements page ----------
+  function announcementsPage() {
+    var allAnnouncements = S.announcements || [];
+    var activeFilter = "all";
+    var searchQuery = "";
+
+    function render() {
+      var filtered = allAnnouncements.filter(function (a) {
+        var matchFilter = activeFilter === "all" ||
+          a.course === activeFilter ||
+          (a.category && a.category.toLowerCase().indexOf(activeFilter.toLowerCase()) !== -1);
+        if (!matchFilter) return false;
+
+        if (!searchQuery) return true;
+        var q = searchQuery.toLowerCase();
+        var inTitle = a.title.toLowerCase().indexOf(q) !== -1;
+        var inSummary = a.summary.toLowerCase().indexOf(q) !== -1;
+        var inContent = (a.content || []).join(" ").toLowerCase().indexOf(q) !== -1;
+        var inCourse = (a.courseName || "").toLowerCase().indexOf(q) !== -1;
+        return inTitle || inSummary || inContent || inCourse;
+      });
+
+      filtered.sort(function (a, b) {
+        if (a.pinned && !b.pinned) return -1;
+        if (!a.pinned && b.pinned) return 1;
+        return (b.timestamp || 0) - (a.timestamp || 0);
+      });
+
+      var filterOpts = [
+        { id: "all", name: "All Notices" },
+        { id: "Deadlines", name: "Deadlines" },
+        { id: "public-speaking", name: "Public Speaking" },
+        { id: "business-writing", name: "Business Writing" },
+        { id: "composition", name: "Composition (S2)" },
+        { id: "english-grammar", name: "English Grammar" }
+      ];
+
+      var html = '<div class="wrap announcements-wrap">' +
+        '<div class="announcements-header-row">' +
+          '<div>' +
+            '<div class="crumbs"><a href="#/">Home</a> / Announcements</div>' +
+            '<h1 style="margin-bottom:6px">Course Announcements & Notices</h1>' +
+            '<p style="color:var(--muted);margin:0">Official deadlines, class schedules, exam updates, and academic guidelines from Dr. Naciri.</p>' +
+          '</div>' +
+          '<span class="badge accent">' + allAnnouncements.length + ' Announcements</span>' +
+        '</div>' +
+
+        '<div class="announcements-toolbar">' +
+          '<div class="announcements-filters">' +
+            filterOpts.map(function (o) {
+              var count = allAnnouncements.filter(function (x) {
+                return o.id === "all" || x.course === o.id || (x.category && x.category.toLowerCase().indexOf(o.id.toLowerCase()) !== -1);
+              }).length;
+              return '<button class="' + (activeFilter === o.id ? "on" : "") + '" data-af="' + o.id + '">' + esc(o.name) + ' (' + count + ')</button>';
+            }).join("") +
+          '</div>' +
+          '<div class="announcements-search-box">' +
+            '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
+            '<input id="ann-search-input" type="search" placeholder="Search notices..." value="' + esc(searchQuery) + '">' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="announcements-list">' +
+          (filtered.length === 0 ?
+            '<div class="card" style="padding:40px;text-align:center;color:var(--muted)">No announcements found matching your filter or search query.</div>' :
+            filtered.map(function (a) {
+              var pClass = a.priority || "info";
+              var pLabel = a.priorityLabel || (pClass.charAt(0).toUpperCase() + pClass.slice(1));
+              return '<div class="ann-card ' + (a.pinned ? "pinned" : "") + '" id="' + esc(a.id) + '">' +
+                (a.pinned ? '<div class="pinned-ribbon">📌 Pinned Announcement</div>' : '') +
+                '<div class="ann-top">' +
+                  '<div class="ann-tags">' +
+                    '<span class="ann-badge ' + esc(pClass) + '">' + esc(pLabel) + '</span>' +
+                    '<span class="ann-course-pill">' + esc(a.courseName || a.course) + '</span>' +
+                  '</div>' +
+                  '<span class="ann-date">📅 ' + esc(a.date) + '</span>' +
+                '</div>' +
+                '<h2 class="ann-title">' + esc(a.title) + '</h2>' +
+                '<p class="ann-summary">' + esc(a.summary) + '</p>' +
+                '<div class="ann-content">' +
+                  (a.content || []).map(function (paragraph) {
+                    return '<p>' + esc(paragraph) + '</p>';
+                  }).join("") +
+                '</div>' +
+                (a.link ?
+                  '<div class="ann-foot">' +
+                    '<a class="btn ghost btn-sm" href="' + esc(a.link.url) + '">' + esc(a.link.text) + ' →</a>' +
+                  '</div>' : '') +
+              '</div>';
+            }).join("")
+          ) +
+        '</div>' +
+      '</div>';
+
+      app.innerHTML = html;
+      window.scrollTo(0, 0);
+
+      app.querySelectorAll(".announcements-filters button").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activeFilter = btn.dataset.af;
+          if (activeFilter === "all") searchQuery = "";
+          render();
+        });
+      });
+
+      var sInput = document.getElementById("ann-search-input");
+      if (sInput) {
+        sInput.addEventListener("input", function () {
+          searchQuery = sInput.value.trim();
+          render();
+          var newInput = document.getElementById("ann-search-input");
+          if (newInput) {
+            newInput.focus();
+            newInput.setSelectionRange(newInput.value.length, newInput.value.length);
+          }
+        });
+      }
+    }
+
+    render();
   }
 
   // ---------- comments page ----------
@@ -902,6 +1036,7 @@
     document.querySelectorAll("[data-nav]").forEach(function (a) {
       var n = a.dataset.nav;
       if (parts[0] === "quizzes" || parts[0] === "quiz") a.classList.toggle("on", n === "quizzes");
+      else if (parts[0] === "announcements") a.classList.toggle("on", n === "announcements");
       else if (parts[0] === "comments") a.classList.toggle("on", n === "comments");
       else if (parts[0] === "course" || parts[0] === "courses") a.classList.toggle("on", n === "courses");
       else a.classList.toggle("on", n === "home" && parts[0] !== "view");
@@ -934,6 +1069,13 @@
       app.dataset.course = "";
       setTitle("Reading Quiz");
       quizPage(parts[1], parts[2]);
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (parts[0] === "announcements") {
+      app.dataset.course = "";
+      setTitle("Announcements");
+      announcementsPage();
       window.scrollTo(0, 0);
       return;
     }

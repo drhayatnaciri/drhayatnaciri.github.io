@@ -2789,5 +2789,135 @@ window.SITE = {
    "timestamp": 1687388400000,
    "replies": []
   }
+ ],
+ "announcements": [
+  {
+   "id": "ann-1",
+   "title": "Continuous Assessment: Quiz Screenshot Submission Deadline",
+   "date": "Nov 02, 2026",
+   "timestamp": 1793577600000,
+   "category": "Deadlines",
+   "priority": "urgent",
+   "priorityLabel": "Urgent Deadline",
+   "pinned": true,
+   "course": "all",
+   "courseName": "All Courses",
+   "summary": "Final reminder to complete online unit reading quizzes and submit your result card screenshots before Sunday midnight.",
+   "content": [
+    "All students enrolled in Composition (S2), Writing for Business, and Public Speaking must complete their assigned unit quizzes on the platform.",
+    "Ensure your screenshot clearly shows your student name, final score (minimum 2/3 for passing credit), and the generated verification code (e.g., VER-HN-XXXX).",
+    "Send your submission by clicking the \"Email Results Screenshot\" button on your result card or directly to Dr. Naciri's academic email before Sunday, November 15, 2026 at 23:59."
+   ],
+   "link": {
+    "text": "Go to Quizzes Hub",
+    "url": "#/quizzes"
+   }
+  },
+  {
+   "id": "ann-2",
+   "title": "COM 1301 Midterm Debate Schedule & Time Slot Extension",
+   "date": "Oct 28, 2026",
+   "timestamp": 1793145600000,
+   "category": "Oral Presentations",
+   "priority": "important",
+   "priorityLabel": "Important Notice",
+   "pinned": false,
+   "course": "public-speaking",
+   "courseName": "Public Speaking & Debating",
+   "summary": "Midterm debate schedule posted for Amphi B. Speech slots have been extended to 7 minutes to accommodate Monroe's Motivated Sequence.",
+   "content": [
+    "Midterm debate rounds will take place in Amphi B on Wednesday, November 11, and Thursday, November 12, 2026.",
+    "Per student feedback regarding speech pacing, presentation slots have been extended from 5 minutes to 7 minutes per speaker.",
+    "Please arrive 15 minutes before your scheduled debate slot and bring 2 printed copies of your key-word outline for evaluation."
+   ],
+   "link": {
+    "text": "View Public Speaking Material",
+    "url": "#/course/public-speaking/delivery"
+   }
+  },
+  {
+   "id": "ann-3",
+   "title": "Writing for Business: Modules 06 & 07 Supplementary Case Studies Live",
+   "date": "Oct 18, 2026",
+   "timestamp": 1792281600000,
+   "category": "Course Material",
+   "priority": "update",
+   "priorityLabel": "New Material",
+   "pinned": false,
+   "course": "business-writing",
+   "courseName": "Writing for Business",
+   "summary": "New slide decks covering Harvard-style Resumé Architecture and the 6-Step Case Study Analysis are now accessible.",
+   "content": [
+    "The slide presentations for Module 06 (Resumé Architecture & Design) and Module 07 (Case Study Analysis) have been uploaded to the course material section.",
+    "Please review the \"8 words that weaken emails\" in Module 04 before submitting your mock corporate memo next week.",
+    "Self-assessment quizzes for both modules are now active in the Quizzes section."
+   ],
+   "link": {
+    "text": "Explore Business Writing Slides",
+    "url": "#/course/business-writing"
+   }
+  },
+  {
+   "id": "ann-4",
+   "title": "Composition S2: In-Class Peer Review for Unit 07 Paragraph Drafts",
+   "date": "Oct 10, 2026",
+   "timestamp": 1791590400000,
+   "category": "Class Schedule",
+   "priority": "info",
+   "priorityLabel": "Class Activity",
+   "pinned": false,
+   "course": "composition",
+   "courseName": "Composition (S2)",
+   "summary": "Students must bring a printed 200-word draft focusing on controlling ideas and transitional coherence for peer review.",
+   "content": [
+    "Next Monday's workshop will be dedicated to peer feedback on topic sentence precision, paragraph unity, and comma splice prevention.",
+    "Consult the Unit 07 slides on transitional signals and coherence before finalizing your paragraph draft.",
+    "The peer review checklist will count toward your in-class participation mark."
+   ],
+   "link": {
+    "text": "Open Composition Units",
+    "url": "#/course/composition"
+   }
+  },
+  {
+   "id": "ann-5",
+   "title": "Fall Term 2026 Weekly Office Hours & Consultation Schedule",
+   "date": "Sep 22, 2026",
+   "timestamp": 1790035200000,
+   "category": "Office Hours",
+   "priority": "info",
+   "priorityLabel": "Advising Hours",
+   "pinned": false,
+   "course": "all",
+   "courseName": "All Courses",
+   "summary": "Dr. Naciri is available for walk-in student consultations every Tuesday and Thursday at FLSH Meknès.",
+   "content": [
+    "Office Location: Room 214, English Studies Department, Faculty of Letters and Human Sciences (FLSH), Moulay Ismail University.",
+    "Hours: Tuesdays and Thursdays, 10:00 AM – 12:30 PM.",
+    "Students seeking guidance on presentation delivery, business pitch decks, or grammar review are encouraged to drop by during these time slots."
+   ],
+   "link": null
+  },
+  {
+   "id": "ann-6",
+   "title": "English Grammar: Supplementary Conditional Inversion Drills Uploaded",
+   "date": "Sep 14, 2026",
+   "timestamp": 1789344000000,
+   "category": "Course Material",
+   "priority": "update",
+   "priorityLabel": "Practice Update",
+   "pinned": false,
+   "course": "english-grammar",
+   "courseName": "English Grammar",
+   "summary": "Additional inversion examples and authentic literary structures added to Unit 04 per student requests.",
+   "content": [
+    "In response to student feedback, Unit 04 has been expanded with supplementary drills on conditional inversion (Had I known, Were he to arrive, Should you need).",
+    "The practice quiz for Unit 04 has been refreshed with new randomized question variations."
+   ],
+   "link": {
+    "text": "View Grammar Deck",
+    "url": "#/course/english-grammar"
+   }
+  }
  ]
 };

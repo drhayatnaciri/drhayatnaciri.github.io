@@ -682,8 +682,8 @@
                       '<div class="comment-reply-user">' +
                         '<div class="comment-reply-avatar">' + rAvatar + '</div>' +
                         '<div class="comment-reply-meta">' +
-                          '<h5>' + esc(r.name) + (isInstructor ? ' <span class="instructor-pill">Instructor</span>' : ' <span class="shield-pill">Hidden name</span>') + '</h5>' +
-                          '<p>' + esc(r.affiliation || (isInstructor ? "Course Instructor" : "Student")) + '</p>' +
+                          '<h5>' + esc(r.name) + (isInstructor ? ' <span class="instructor-pill">Professor</span>' : ' <span class="shield-pill">Hidden name</span>') + '</h5>' +
+                          '<p>' + esc(r.affiliation || (isInstructor ? "Professor" : "Student")) + '</p>' +
                         '</div>' +
                       '</div>' +
                       '<span class="comment-reply-date">' + esc(r.date) + '</span>' +
@@ -847,7 +847,7 @@
             id: "rep-" + now,
             name: displayName,
             isInstructor: isInstructor,
-            affiliation: isInstructor ? "Course Instructor" : "Student Reply",
+            affiliation: isInstructor ? "Professor" : "Student Reply",
             date: "Just now",
             timestamp: now,
             text: txt,

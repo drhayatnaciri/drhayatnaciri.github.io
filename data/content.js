@@ -2346,7 +2346,19 @@ window.SITE = {
    "course": "business-writing",
    "text": "The slides on formal email rules and the '8 words that weaken emails' in Module 04 were an absolute game changer for me. I immediately updated my internship inquiry emails and got a positive response within 24 hours. Thank you Dr. Naciri!",
    "likes": 28,
-   "timestamp": 1790208000000
+   "timestamp": 1790208000000,
+   "replies": [
+    {
+     "id": "r1",
+     "name": "Dr. Hayat Naciri",
+     "isInstructor": true,
+     "affiliation": "Course Instructor",
+     "date": "Sep 25, 2026",
+     "timestamp": 1790294400000,
+     "text": "Wonderful outcome! Conciseness and directness in the opening lines of professional correspondence make a tremendous difference to hiring committees.",
+     "likes": 14
+    }
+   ]
   },
   {
    "id": "c2",
@@ -2356,7 +2368,19 @@ window.SITE = {
    "course": "public-speaking",
    "text": "I used to experience intense stage fright and shaky hands before any oral presentation. The cognitive restructuring exercises and diaphragmatic breathing in Unit 02 genuinely helped me stay composed during our midterm debate.",
    "likes": 34,
-   "timestamp": 1779058800000
+   "timestamp": 1779058800000,
+   "replies": [
+    {
+     "id": "r2",
+     "name": "Student #6104",
+     "isInstructor": false,
+     "affiliation": "COM 1301 Student",
+     "date": "May 20, 2026",
+     "timestamp": 1779231600000,
+     "text": "The 4-7-8 breathing technique also helped me immensely right before stepping onto the stage for the debate round!",
+     "likes": 8
+    }
+   ]
   },
   {
    "id": "c3",
@@ -2366,7 +2390,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "Having the slide decks rendered directly as high-resolution pages on this site makes studying on my phone so convenient. I don't have to download 50MB PPTX files every time on 4G.",
    "likes": 19,
-   "timestamp": 1674946800000
+   "timestamp": 1674946800000,
+   "replies": []
   },
   {
    "id": "c4",
@@ -2376,7 +2401,19 @@ window.SITE = {
    "course": "composition",
    "text": "The distinction between topic sentences with a 'controlling idea' versus mere factual statements finally clicked after reviewing Unit 01. The before-and-after examples in the slides made paragraph development straightforward.",
    "likes": 22,
-   "timestamp": 1712793600000
+   "timestamp": 1712793600000,
+   "replies": [
+    {
+     "id": "r4",
+     "name": "Y**** R.",
+     "isInstructor": false,
+     "affiliation": "Composition S2",
+     "date": "Apr 13, 2024",
+     "timestamp": 1713009600000,
+     "text": "Completely agree! Once you master controlling ideas, structuring full 5-paragraph essays becomes almost automatic.",
+     "likes": 6
+    }
+   ]
   },
   {
    "id": "c33",
@@ -2386,7 +2423,19 @@ window.SITE = {
    "course": "public-speaking",
    "text": "The slides on Monroe's Motivated Sequence are thorough, but the 4-minute time limit for the persuasive speech felt way too short. Almost everyone in our recitation section got cut off before delivering their call to action.",
    "likes": 35,
-   "timestamp": 1789167600000
+   "timestamp": 1789167600000,
+   "replies": [
+    {
+     "id": "r3",
+     "name": "Dr. Hayat Naciri",
+     "isInstructor": true,
+     "affiliation": "Course Instructor",
+     "date": "Sep 14, 2026",
+     "timestamp": 1789344000000,
+     "text": "Thank you for this thoughtful feedback! For the upcoming term, we are extending the speech slots to 7 minutes so everyone has ample breathing room to deliver the Call to Action.",
+     "likes": 21
+    }
+   ]
   },
   {
    "id": "c5",
@@ -2396,7 +2445,8 @@ window.SITE = {
    "course": "leadership-communication",
    "text": "Professor Naciri's course on Leadership and Communication remains one of the most practical classes I took at AUI. The negotiation frameworks (BATNA) and active listening techniques are tools I use daily in my project management role.",
    "likes": 41,
-   "timestamp": 1759446000000
+   "timestamp": 1759446000000,
+   "replies": []
   },
   {
    "id": "c6",
@@ -2406,7 +2456,8 @@ window.SITE = {
    "course": "english-grammar",
    "text": "Passive voice with agent omission was always confusing in our secondary school textbooks. Unit 15 explained the academic rationale so clearly—especially why researchers use it to emphasize findings rather than the actor.",
    "likes": 15,
-   "timestamp": 1645052400000
+   "timestamp": 1645052400000,
+   "replies": []
   },
   {
    "id": "c7",
@@ -2416,7 +2467,8 @@ window.SITE = {
    "course": "composition",
    "text": "Unit 07 on paragraph unity and transitional signals saved my midterm paper. I used to write long rambling paragraphs; now my major and minor supporting sentences are organized cleanly.",
    "likes": 17,
-   "timestamp": 1739487600000
+   "timestamp": 1739487600000,
+   "replies": []
   },
   {
    "id": "c8",
@@ -2426,7 +2478,8 @@ window.SITE = {
    "course": "leadership-communication",
    "text": "The breakdown of Tuckman's model (Forming, Storming, Norming, Performing) helped our group understand why we had friction during the first two weeks of our group project. We handled our differences constructively.",
    "likes": 25,
-   "timestamp": 1700262000000
+   "timestamp": 1700262000000,
+   "replies": []
   },
   {
    "id": "c9",
@@ -2436,7 +2489,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "Module 06 on Resumé Architecture and avoiding complex multi-column graphics for ATS screening was invaluable advice. I revised my CV according to the action verb formula and already passed initial HR screening.",
    "likes": 31,
-   "timestamp": 1750287600000
+   "timestamp": 1750287600000,
+   "replies": []
   },
   {
    "id": "c10",
@@ -2446,7 +2500,8 @@ window.SITE = {
    "course": "public-speaking",
    "text": "Aristotle's rhetorical triangle (Ethos, Pathos, Logos) combined with Monroe's Motivated Sequence in Unit 06 provided the exact scaffolding I needed for my persuasive speech on environmental conservation.",
    "likes": 20,
-   "timestamp": 1678748400000
+   "timestamp": 1678748400000,
+   "replies": []
   },
   {
    "id": "c11",
@@ -2456,7 +2511,8 @@ window.SITE = {
    "course": "english-grammar",
    "text": "The conditional inversion rules (Had I known..., Were she to...) in Unit 04 are explained with great academic clarity. Really appreciate the review slides before the exams.",
    "likes": 12,
-   "timestamp": 1574722800000
+   "timestamp": 1574722800000,
+   "replies": []
   },
   {
    "id": "c34",
@@ -2466,7 +2522,19 @@ window.SITE = {
    "course": "english-grammar",
    "text": "Unit 04 on conditional inversions and past subjunctive structures felt overly theoretical. The midterm exam questions were significantly harder than the practice exercises on the slides, which caught many of us off guard.",
    "likes": 11,
-   "timestamp": 1733266800000
+   "timestamp": 1733266800000,
+   "replies": [
+    {
+     "id": "r6",
+     "name": "Dr. Hayat Naciri",
+     "isInstructor": true,
+     "affiliation": "Course Instructor",
+     "date": "Dec 06, 2024",
+     "timestamp": 1733486400000,
+     "text": "Noted! I have supplemented the Unit 04 practice deck with additional authentic literary and business inversion examples.",
+     "likes": 9
+    }
+   ]
   },
   {
    "id": "c12",
@@ -2476,7 +2544,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "The 6 steps of case study analysis in Module 07 are comprehensive and rigorous. It forces you to distinguish the root business problem from surface symptoms before jumping to conclusions.",
    "likes": 27,
-   "timestamp": 1706396400000
+   "timestamp": 1706396400000,
+   "replies": []
   },
   {
    "id": "c13",
@@ -2486,7 +2555,19 @@ window.SITE = {
    "course": "composition",
    "text": "Just completed the Unit 03 quiz and submitted my screenshot via email! It really tests whether you actually read the slides and grasped the difference between unity and coherence.",
    "likes": 18,
-   "timestamp": 1792022400000
+   "timestamp": 1792022400000,
+   "replies": [
+    {
+     "id": "r5",
+     "name": "Dr. Hayat Naciri",
+     "isInstructor": true,
+     "affiliation": "Course Instructor",
+     "date": "Oct 16, 2026",
+     "timestamp": 1792108800000,
+     "text": "Well done! Screenshots received and logged for continuous assessment. Keep up the consistent review habits.",
+     "likes": 11
+    }
+   ]
   },
   {
    "id": "c14",
@@ -2496,7 +2577,8 @@ window.SITE = {
    "course": "general",
    "text": "The reading viewer is so clean and fast! The offline view-only setup protects the materials while letting us review slides comfortably on our laptops and phones without login issues.",
    "likes": 23,
-   "timestamp": 1670626800000
+   "timestamp": 1670626800000,
+   "replies": []
   },
   {
    "id": "c15",
@@ -2506,7 +2588,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "The pitch deck structure in Module 09 is top-tier. Most business templates online are filled with clutter, but Dr. Naciri's framework emphasizes problem-solution fit and clear metrics.",
    "likes": 16,
-   "timestamp": 1622242800000
+   "timestamp": 1622242800000,
+   "replies": []
   },
   {
    "id": "c16",
@@ -2516,7 +2599,8 @@ window.SITE = {
    "course": "leadership-communication",
    "text": "Understanding high-context vs low-context cultures in Unit 12 completely changed how I perceive cross-cultural communication during group projects with international exchange students.",
    "likes": 29,
-   "timestamp": 1718406000000
+   "timestamp": 1718406000000,
+   "replies": []
   },
   {
    "id": "c17",
@@ -2526,7 +2610,8 @@ window.SITE = {
    "course": "public-speaking",
    "text": "Holding eye contact for 3 to 5 seconds per audience sector instead of scanning rapidly was such a simple tip from Unit 05, but it completely changed the feedback I received from my peers.",
    "likes": 14,
-   "timestamp": 1589241600000
+   "timestamp": 1589241600000,
+   "replies": []
   },
   {
    "id": "c18",
@@ -2536,7 +2621,8 @@ window.SITE = {
    "course": "english-grammar",
    "text": "The modal verbs of deduction unit (must have been vs might have been vs can't have been) cleared up years of confusion for me. The contextual examples are very helpful.",
    "likes": 11,
-   "timestamp": 1554678000000
+   "timestamp": 1554678000000,
+   "replies": []
   },
   {
    "id": "c35",
@@ -2546,7 +2632,8 @@ window.SITE = {
    "course": "composition",
    "text": "The grading rubric on paragraph unity and comma splices in Unit 03 is way too strict. Losing major marks for minor transitional punctuation felt harsh, especially with only 48 hours to complete the revision draft.",
    "likes": 9,
-   "timestamp": 1746658800000
+   "timestamp": 1746658800000,
+   "replies": []
   },
   {
    "id": "c19",
@@ -2556,7 +2643,8 @@ window.SITE = {
    "course": "composition",
    "text": "Revising vs proofreading: learning that revising is macro (structure, logic) while proofreading is micro (grammar, punctuation) completely streamlined my revision workflow.",
    "likes": 19,
-   "timestamp": 1631055600000
+   "timestamp": 1631055600000,
+   "replies": []
   },
   {
    "id": "c20",
@@ -2566,7 +2654,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "The Statement of Work (SOW) slide in the Business Proposals unit taught us how to avoid scope creep in freelance contracts. Essential professional knowledge for every graduating student.",
    "likes": 26,
-   "timestamp": 1694646000000
+   "timestamp": 1694646000000,
+   "replies": []
   },
   {
    "id": "c21",
@@ -2576,7 +2665,8 @@ window.SITE = {
    "course": "public-speaking",
    "text": "Extemporaneous speaking with key-word outlines is so much more engaging than reading from a script. Dr. Naciri's drills helped me ditch full scripts for good.",
    "likes": 21,
-   "timestamp": 1651795200000
+   "timestamp": 1651795200000,
+   "replies": []
   },
   {
    "id": "c22",
@@ -2586,7 +2676,8 @@ window.SITE = {
    "course": "leadership-communication",
    "text": "Fiedler's Contingency Model and Goleman's Emotional Intelligence components gave our study group a solid framework for analyzing leadership case studies in class.",
    "likes": 17,
-   "timestamp": 1614639600000
+   "timestamp": 1614639600000,
+   "replies": []
   },
   {
    "id": "c23",
@@ -2596,7 +2687,8 @@ window.SITE = {
    "course": "english-grammar",
    "text": "Uncountable academic nouns like 'research', 'information', and 'equipment'—finally stopped making the mistake of writing 'an advice' or 'many researches' in formal papers!",
    "likes": 13,
-   "timestamp": 1582585200000
+   "timestamp": 1582585200000,
+   "replies": []
   },
   {
    "id": "c24",
@@ -2606,7 +2698,8 @@ window.SITE = {
    "course": "composition",
    "text": "The point-by-point vs block methods for compare-and-contrast essays in Unit 09-16 are laid out so clearly. It made writing our final analytical paper manageable.",
    "likes": 15,
-   "timestamp": 1607900400000
+   "timestamp": 1607900400000,
+   "replies": []
   },
   {
    "id": "c25",
@@ -2616,7 +2709,8 @@ window.SITE = {
    "course": "public-speaking",
    "text": "Dr. Naciri creates such a supportive atmosphere in class. Her feedback on speech outlines helped me overcome nervousness that I struggled with for years.",
    "likes": 30,
-   "timestamp": 1729551600000
+   "timestamp": 1729551600000,
+   "replies": []
   },
   {
    "id": "c26",
@@ -2626,7 +2720,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "Took the email quiz and got 3/3! Sent the screenshot to Dr. Naciri. The verification code is such a neat feature to confirm we did our reading.",
    "likes": 14,
-   "timestamp": 1791072000000
+   "timestamp": 1791072000000,
+   "replies": []
   },
   {
    "id": "c27",
@@ -2636,7 +2731,8 @@ window.SITE = {
    "course": "leadership-communication",
    "text": "The Groupthink symptoms in the decision-making unit were eye-opening. We realized how often teams stay silent when a leader dominates the conversation.",
    "likes": 22,
-   "timestamp": 1663455600000
+   "timestamp": 1663455600000,
+   "replies": []
   },
   {
    "id": "c28",
@@ -2646,7 +2742,8 @@ window.SITE = {
    "course": "general",
    "text": "One of the best professors at UMI. Dedicated, precise, and genuinely invested in helping students communicate with confidence and academic rigor.",
    "likes": 48,
-   "timestamp": 1762902000000
+   "timestamp": 1762902000000,
+   "replies": []
   },
   {
    "id": "c29",
@@ -2656,7 +2753,8 @@ window.SITE = {
    "course": "english-grammar",
    "text": "Parallel structure errors and dangling modifiers were my biggest weaknesses in written English. The exercises in Unit 24-25 corrected those habits.",
    "likes": 16,
-   "timestamp": 1603148400000
+   "timestamp": 1603148400000,
+   "replies": []
   },
   {
    "id": "c30",
@@ -2666,7 +2764,8 @@ window.SITE = {
    "course": "composition",
    "text": "Causal chains in cause-and-effect writing were explained masterfully in the modes of writing slides. Highly recommend every S2 student review these.",
    "likes": 12,
-   "timestamp": 1571007600000
+   "timestamp": 1571007600000,
+   "replies": []
   },
   {
    "id": "c31",
@@ -2676,7 +2775,8 @@ window.SITE = {
    "course": "business-writing",
    "text": "Direct vs indirect approaches in memos: knowing when to give the bottom line first versus when to build up rationale for sensitive news was crucial for our case study.",
    "likes": 20,
-   "timestamp": 1636930800000
+   "timestamp": 1636930800000,
+   "replies": []
   },
   {
    "id": "c32",
@@ -2686,7 +2786,8 @@ window.SITE = {
    "course": "public-speaking",
    "text": "The vocal variety concepts in Unit 05—varying pitch and deliberate pauses—helped me score the highest grade in our final debate round. Thank you Prof. Naciri!",
    "likes": 27,
-   "timestamp": 1687388400000
+   "timestamp": 1687388400000,
+   "replies": []
   }
  ]
 };

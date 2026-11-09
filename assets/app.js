@@ -447,6 +447,15 @@
     var likedIds = {};
     try { (JSON.parse(store("hn_liked_comments") || "[]")).forEach(function (id) { likedIds[id] = true; }); } catch (e) {}
 
+    var rawReplies = store("hn_comment_replies");
+    var userReplies = {};
+    try { userReplies = rawReplies ? JSON.parse(rawReplies) : {}; } catch (e) { userReplies = {}; }
+
+    var likedReplyIds = {};
+    try { (JSON.parse(store("hn_liked_replies") || "[]")).forEach(function (id) { likedReplyIds[id] = true; }); } catch (e) {}
+
+    var openReplyBoxCids = {};
+
     var activeFilter = "all";
     var activeSort = "likes";
     var limit = 10;
@@ -523,6 +532,56 @@
             var isLiked = !!likedIds[c.id];
             var courseObj = courseOpts.filter(function (o) { return o.id === c.course; })[0];
             var courseLabel = courseObj ? courseObj.name : c.course;
+            var repliesList = (c.replies || []).concat(userReplies[c.id] || []);
+            var rCount = repliesList.length;
+            var isReplyBoxOpen = !!openReplyBoxCids[c.id];
+
+            var repliesHtml = "";
+            if (rCount > 0) {
+              repliesHtml = '<div class="comment-replies">' +
+                repliesList.map(function (r) {
+                  var isReplyLiked = !!likedReplyIds[r.id];
+                  var isInstructor = !!r.isInstructor || (r.name && r.name.toLowerCase().indexOf("naciri") !== -1);
+                  var rAvatar = esc((r.name || "?").charAt(0));
+                  return '<div class="comment-reply-card ' + (isInstructor ? "is-instructor" : "") + '" data-rid="' + esc(r.id) + '">' +
+                    '<div class="comment-reply-top">' +
+                      '<div class="comment-reply-user">' +
+                        '<div class="comment-reply-avatar">' + rAvatar + '</div>' +
+                        '<div class="comment-reply-meta">' +
+                          '<h5>' + esc(r.name) + (isInstructor ? ' <span class="instructor-pill">Instructor</span>' : ' <span class="shield-pill">Hidden name</span>') + '</h5>' +
+                          '<p>' + esc(r.affiliation || (isInstructor ? "Course Instructor" : "Student")) + '</p>' +
+                        '</div>' +
+                      '</div>' +
+                      '<span class="comment-reply-date">' + esc(r.date) + '</span>' +
+                    '</div>' +
+                    '<p class="comment-reply-body">' + esc(r.text) + '</p>' +
+                    '<div class="comment-reply-foot">' +
+                      '<button class="comment-reply-like-btn ' + (isReplyLiked ? "liked" : "") + '" type="button" data-like-reply="' + esc(r.id) + '" data-parent-cid="' + esc(c.id) + '">' +
+                        '👍 Helpful (' + (r.likes || 0) + ')' +
+                      '</button>' +
+                    '</div>' +
+                  '</div>';
+                }).join("") +
+              '</div>';
+            }
+
+            var replyFormHtml = '<div class="comment-reply-form-card" id="reply-form-' + esc(c.id) + '" ' + (isReplyBoxOpen ? '' : 'hidden') + '>' +
+              '<form class="comment-reply-form" data-parent-cid="' + esc(c.id) + '">' +
+                '<textarea class="reply-input-text" placeholder="Write a reply to ' + esc(c.name) + '..." required></textarea>' +
+                '<div class="comment-reply-controls">' +
+                  '<input class="reply-input-name" type="text" placeholder="Your Name (e.g. Fatima / Karim)">' +
+                  '<label class="comments-hide-check">' +
+                    '<input class="reply-input-hide" type="checkbox" checked>' +
+                    '<span>Keep my name hidden</span>' +
+                  '</label>' +
+                  '<div class="reply-btn-group">' +
+                    '<button class="btn ghost btn-sm reply-cancel-btn" type="button" data-reply-cancel="' + esc(c.id) + '">Cancel</button>' +
+                    '<button class="btn primary btn-sm" type="submit">Post Reply</button>' +
+                  '</div>' +
+                '</div>' +
+              '</form>' +
+            '</div>';
+
             return '<div class="comment-card" data-cid="' + esc(c.id) + '">' +
               '<div class="comment-top">' +
                 '<div class="comment-user">' +
@@ -537,10 +596,17 @@
               '<p class="comment-body">' + esc(c.text) + '</p>' +
               '<div class="comment-foot">' +
                 '<span class="comment-course-tag">' + esc(courseLabel) + '</span>' +
-                '<button class="comment-like-btn ' + (isLiked ? "liked" : "") + '" type="button" data-like="' + esc(c.id) + '">' +
-                  '👍 ' + (isLiked ? "Helpful (" + (c.likes || 0) + ")" : "Helpful (" + (c.likes || 0) + ")") +
-                '</button>' +
+                '<div class="comment-foot-actions">' +
+                  '<button class="comment-reply-toggle-btn ' + (isReplyBoxOpen ? "active" : "") + '" type="button" data-reply-toggle="' + esc(c.id) + '">' +
+                    '💬 Reply' + (rCount > 0 ? ' <span class="reply-count">(' + rCount + ')</span>' : '') +
+                  '</button>' +
+                  '<button class="comment-like-btn ' + (isLiked ? "liked" : "") + '" type="button" data-like="' + esc(c.id) + '">' +
+                    '👍 Helpful (' + (c.likes || 0) + ')' +
+                  '</button>' +
+                '</div>' +
               '</div>' +
+              repliesHtml +
+              replyFormHtml +
             '</div>';
           }).join("") +
         '</div>' +
@@ -577,7 +643,7 @@
         });
       }
 
-      // Like button click
+      // Like comment button click
       app.querySelectorAll(".comment-like-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
           var cid = btn.dataset.like;
@@ -593,6 +659,101 @@
             toast("Marked comment as helpful!");
           }
           store("hn_liked_comments", JSON.stringify(Object.keys(likedIds)));
+          render();
+        });
+      });
+
+      // Reply toggle button click
+      app.querySelectorAll(".comment-reply-toggle-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var cid = btn.dataset.replyToggle;
+          openReplyBoxCids[cid] = !openReplyBoxCids[cid];
+          var formCard = document.getElementById("reply-form-" + cid);
+          if (formCard) {
+            formCard.hidden = !openReplyBoxCids[cid];
+            if (!formCard.hidden) {
+              var ta = formCard.querySelector(".reply-input-text");
+              if (ta) ta.focus();
+            }
+          }
+          btn.classList.toggle("active", !!openReplyBoxCids[cid]);
+        });
+      });
+
+      // Reply cancel button click
+      app.querySelectorAll(".reply-cancel-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var cid = btn.dataset.replyCancel;
+          openReplyBoxCids[cid] = false;
+          var formCard = document.getElementById("reply-form-" + cid);
+          if (formCard) formCard.hidden = true;
+          var toggleBtn = app.querySelector('.comment-reply-toggle-btn[data-reply-toggle="' + cid + '"]');
+          if (toggleBtn) toggleBtn.classList.remove("active");
+        });
+      });
+
+      // Reply form submission
+      app.querySelectorAll(".comment-reply-form").forEach(function (rForm) {
+        rForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var cid = rForm.dataset.parentCid;
+          var txtInput = rForm.querySelector(".reply-input-text");
+          var nameInput = rForm.querySelector(".reply-input-name");
+          var hideInput = rForm.querySelector(".reply-input-hide");
+          var txt = txtInput ? txtInput.value.trim() : "";
+          var rawName = nameInput ? nameInput.value.trim() : "";
+          var hideName = hideInput ? hideInput.checked : true;
+
+          if (!txt) return;
+
+          var displayName = hideName ? maskName(rawName) : (rawName || "Student #" + Math.floor(1000 + Math.random() * 9000));
+          var isInstructor = !hideName && (rawName.toLowerCase().indexOf("naciri") !== -1 || rawName.toLowerCase().indexOf("dr.") !== -1);
+          var now = Date.now();
+          var newReply = {
+            id: "rep-" + now,
+            name: displayName,
+            isInstructor: isInstructor,
+            affiliation: isInstructor ? "Course Instructor" : "Student Reply",
+            date: "Just now",
+            timestamp: now,
+            text: txt,
+            likes: 0
+          };
+
+          userReplies[cid] = userReplies[cid] || [];
+          userReplies[cid].push(newReply);
+          store("hn_comment_replies", JSON.stringify(userReplies));
+
+          openReplyBoxCids[cid] = false;
+          toast("✓ Reply posted successfully!");
+          render();
+        });
+      });
+
+      // Like reply button click
+      app.querySelectorAll(".comment-reply-like-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var rid = btn.dataset.likeReply;
+          var parentCid = btn.dataset.parentCid;
+          var targetReply = null;
+          var parent = allComments.filter(function (x) { return x.id === parentCid; })[0];
+          if (parent && parent.replies) {
+            targetReply = parent.replies.filter(function (r) { return r.id === rid; })[0];
+          }
+          if (!targetReply && userReplies[parentCid]) {
+            targetReply = userReplies[parentCid].filter(function (r) { return r.id === rid; })[0];
+          }
+          if (!targetReply) return;
+
+          if (likedReplyIds[rid]) {
+            delete likedReplyIds[rid];
+            targetReply.likes = Math.max(0, (targetReply.likes || 1) - 1);
+          } else {
+            likedReplyIds[rid] = true;
+            targetReply.likes = (targetReply.likes || 0) + 1;
+            toast("Marked reply as helpful!");
+          }
+          store("hn_liked_replies", JSON.stringify(Object.keys(likedReplyIds)));
           render();
         });
       });

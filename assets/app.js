@@ -455,6 +455,21 @@
     var activeUni = "all";
     var searchQuery = "";
 
+    var OUTLOOK_EMOJIS = [
+      { emoji: "👍", label: "Like", title: "Like (Thumbs Up)" },
+      { emoji: "❤️", label: "Love", title: "Love (Heart)" },
+      { emoji: "👏", label: "Applause", title: "Applause (Celebrate)" },
+      { emoji: "💡", label: "Insightful", title: "Insightful (Lightbulb)" },
+      { emoji: "😮", label: "Surprised", title: "Surprised (Wow)" },
+      { emoji: "🎉", label: "Celebrate", title: "Celebrate (Tada)" }
+    ];
+
+    var userReactions = {};
+    try { userReactions = JSON.parse(store("hn_ann_user_reactions") || "{}"); } catch (e) { userReactions = {}; }
+
+    var customDeltas = {};
+    try { customDeltas = JSON.parse(store("hn_ann_deltas") || "{}"); } catch (e) { customDeltas = {}; }
+
     var universities = [
       {
         id: "mly-smail",
@@ -481,6 +496,54 @@
         icon: "📚"
       }
     ];
+
+    function renderReactionsStrip(a) {
+      var annId = a.id;
+      var userReacted = userReactions[annId] || [];
+      var deltas = customDeltas[annId] || {};
+      var base = a.reactions || {};
+
+      var emojisToShow = [];
+      OUTLOOK_EMOJIS.forEach(function (oe) {
+        var e = oe.emoji;
+        var count = (base[e] || 0) + (deltas[e] || 0);
+        var hasReacted = userReacted.indexOf(e) !== -1;
+        if (count > 0 || hasReacted) {
+          emojisToShow.push({
+            emoji: e,
+            count: Math.max(0, count),
+            hasReacted: hasReacted,
+            title: oe.title
+          });
+        }
+      });
+
+      var pillsHtml = emojisToShow.map(function (item) {
+        return '<button type="button" class="ann-react-btn ' + (item.hasReacted ? 'reacted' : '') + '" data-ann-id="' + esc(annId) + '" data-emoji="' + esc(item.emoji) + '" title="' + esc(item.title) + '">' +
+          '<span class="react-emoji">' + item.emoji + '</span> ' +
+          '<span class="react-count">' + item.count + '</span>' +
+        '</button>';
+      }).join("");
+
+      var flyoutHtml = '<div class="ann-emoji-flyout" id="flyout-' + esc(annId) + '">' +
+        OUTLOOK_EMOJIS.map(function (oe) {
+          var isReacted = userReacted.indexOf(oe.emoji) !== -1;
+          return '<button type="button" class="ann-flyout-emoji-btn ' + (isReacted ? 'active' : '') + '" data-ann-id="' + esc(annId) + '" data-emoji="' + esc(oe.emoji) + '" title="' + esc(oe.title) + '">' +
+            '<span class="flyout-emoji">' + oe.emoji + '</span>' +
+          '</button>';
+        }).join("") +
+      '</div>';
+
+      return '<div class="ann-reactions-strip" id="reactions-strip-' + esc(annId) + '">' +
+        pillsHtml +
+        '<div class="ann-react-add-wrap">' +
+          '<button type="button" class="ann-react-add-btn" data-toggle-flyout="' + esc(annId) + '" title="React with emojis (Outlook style)">' +
+            '<span style="font-size:1.05rem;line-height:1">☺</span> <span class="react-add-text">React</span>' +
+          '</button>' +
+          flyoutHtml +
+        '</div>' +
+      '</div>';
+    }
 
     function render() {
       var filtered = allAnnouncements.filter(function (a) {
@@ -548,10 +611,12 @@
                     return '<p>' + esc(paragraph) + '</p>';
                   }).join("") +
                 '</div>' +
-                (a.link ?
-                  '<div class="ann-foot">' +
-                    '<a class="btn ghost btn-sm" href="' + esc(a.link.url) + '">' + esc(a.link.text) + ' →</a>' +
-                  '</div>' : '') +
+                '<div class="ann-foot">' +
+                  renderReactionsStrip(a) +
+                  (a.link ?
+                    '<a class="btn ghost btn-sm" href="' + esc(a.link.url) + '">' + esc(a.link.text) + ' →</a>' :
+                    '<span></span>') +
+                '</div>' +
               '</div>';
             }).join("") +
           '</div>' +
@@ -563,7 +628,7 @@
           '<div>' +
             '<div class="crumbs"><a href="#/">Home</a> / Announcements</div>' +
             '<h1 style="margin-bottom:6px">Course Announcements & Notices</h1>' +
-            '<p style="color:var(--muted);margin:0">Official academic announcements, continuous assessment deadlines, and presentation timetables organized by university.</p>' +
+            '<p style="color:var(--muted);margin:0">Official academic announcements, continuous assessment deadlines, and presentation timetables organized by university. Students can react with emojis below each notice.</p>' +
           '</div>' +
           '<span class="badge accent">' + allAnnouncements.length + ' Announcements</span>' +
         '</div>' +
@@ -583,6 +648,77 @@
 
       app.innerHTML = html;
       window.scrollTo(0, 0);
+
+      function updateCardReactions(annId) {
+        var ann = allAnnouncements.find(function (x) { return x.id === annId; });
+        if (!ann) return;
+        var stripEl = document.getElementById("reactions-strip-" + annId);
+        if (stripEl) {
+          var temp = document.createElement("div");
+          temp.innerHTML = renderReactionsStrip(ann);
+          var newStrip = temp.firstElementChild;
+          stripEl.parentNode.replaceChild(newStrip, stripEl);
+          attachStripEvents(newStrip);
+        }
+      }
+
+      function toggleReaction(annId, emoji) {
+        if (!userReactions[annId]) userReactions[annId] = [];
+        if (!customDeltas[annId]) customDeltas[annId] = {};
+
+        var idx = userReactions[annId].indexOf(emoji);
+        var isReacting = idx === -1;
+        if (isReacting) {
+          userReactions[annId].push(emoji);
+          customDeltas[annId][emoji] = (customDeltas[annId][emoji] || 0) + 1;
+          toast("Reacted " + emoji + " to notice");
+        } else {
+          userReactions[annId].splice(idx, 1);
+          customDeltas[annId][emoji] = (customDeltas[annId][emoji] || 0) - 1;
+        }
+
+        store("hn_ann_user_reactions", JSON.stringify(userReactions));
+        store("hn_ann_deltas", JSON.stringify(customDeltas));
+
+        updateCardReactions(annId);
+      }
+
+      function attachStripEvents(container) {
+        container.querySelectorAll(".ann-react-btn").forEach(function (btn) {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggleReaction(btn.dataset.annId, btn.dataset.emoji);
+          });
+        });
+
+        var addBtn = container.querySelector(".ann-react-add-btn");
+        var flyout = container.querySelector(".ann-emoji-flyout");
+        if (addBtn && flyout) {
+          addBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var isOpen = flyout.classList.contains("open");
+            document.querySelectorAll(".ann-emoji-flyout.open").forEach(function (f) { f.classList.remove("open"); });
+            document.querySelectorAll(".ann-react-add-btn.open").forEach(function (b) { b.classList.remove("open"); });
+            if (!isOpen) {
+              flyout.classList.add("open");
+              addBtn.classList.add("open");
+            }
+          });
+        }
+
+        container.querySelectorAll(".ann-flyout-emoji-btn").forEach(function (btn) {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggleReaction(btn.dataset.annId, btn.dataset.emoji);
+            if (flyout) flyout.classList.remove("open");
+            if (addBtn) addBtn.classList.remove("open");
+          });
+        });
+      }
+
+      app.querySelectorAll(".ann-reactions-strip").forEach(function (strip) {
+        attachStripEvents(strip);
+      });
 
       app.querySelectorAll(".announcements-filters button").forEach(function (btn) {
         btn.addEventListener("click", function () {
@@ -605,6 +741,14 @@
         });
       }
     }
+
+    // Global listener for closing reaction flyouts when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".ann-react-add-wrap")) {
+        document.querySelectorAll(".ann-emoji-flyout.open").forEach(function (f) { f.classList.remove("open"); });
+        document.querySelectorAll(".ann-react-add-btn.open").forEach(function (b) { b.classList.remove("open"); });
+      }
+    });
 
     render();
   }

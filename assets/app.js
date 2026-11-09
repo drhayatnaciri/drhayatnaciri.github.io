@@ -459,7 +459,11 @@
       if (activeSort === "likes") {
         filtered.sort(function (a, b) { return (b.likes || 0) - (a.likes || 0); });
       } else {
-        filtered.sort(function (a, b) { return (b.id.localeCompare ? b.id.localeCompare(a.id) : 0); });
+        filtered.sort(function (a, b) {
+          var ta = a.timestamp || (a.date ? Date.parse(a.date) : 0) || 0;
+          var tb = b.timestamp || (b.date ? Date.parse(b.date) : 0) || 0;
+          return tb - ta;
+        });
       }
 
       var visible = filtered.slice(0, limit);
@@ -609,11 +613,13 @@
           var courseObj = courseOpts.filter(function (o) { return o.id === courseVal; })[0];
           var affiliation = (courseObj ? courseObj.name : "Student") + " · Semester Student";
 
+          var now = Date.now();
           var newComment = {
-            id: "user-" + Date.now(),
+            id: "user-" + now,
             name: displayName,
             affiliation: affiliation,
             date: "Just now",
+            timestamp: now,
             course: courseVal,
             text: txt,
             likes: 1

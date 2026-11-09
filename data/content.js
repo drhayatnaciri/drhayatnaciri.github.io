@@ -2342,316 +2342,351 @@ window.SITE = {
    "id": "c1",
    "name": "A**** M.",
    "affiliation": "UMI English Studies · Semester 2",
-   "date": "2 days ago",
+   "date": "Sep 24, 2026",
    "course": "business-writing",
    "text": "The slides on formal email rules and the '8 words that weaken emails' in Module 04 were an absolute game changer for me. I immediately updated my internship inquiry emails and got a positive response within 24 hours. Thank you Dr. Naciri!",
-   "likes": 28
+   "likes": 28,
+   "timestamp": 1790208000000
   },
   {
    "id": "c2",
    "name": "Student #4092",
    "affiliation": "Public Speaking & Debating (COM 1301)",
-   "date": "3 days ago",
+   "date": "May 18, 2026",
    "course": "public-speaking",
    "text": "I used to experience intense stage fright and shaky hands before any oral presentation. The cognitive restructuring exercises and diaphragmatic breathing in Unit 02 genuinely helped me stay composed during our midterm debate.",
-   "likes": 34
+   "likes": 34,
+   "timestamp": 1779058800000
   },
   {
    "id": "c3",
    "name": "K. B.",
    "affiliation": "Writing for Business",
-   "date": "5 days ago",
+   "date": "Jan 29, 2023",
    "course": "business-writing",
    "text": "Having the slide decks rendered directly as high-resolution pages on this site makes studying on my phone so convenient. I don't have to download 50MB PPTX files every time on 4G.",
-   "likes": 19
+   "likes": 19,
+   "timestamp": 1674946800000
   },
   {
    "id": "c4",
    "name": "Anonymous Student",
    "affiliation": "Composition S2",
-   "date": "1 week ago",
+   "date": "Apr 11, 2024",
    "course": "composition",
    "text": "The distinction between topic sentences with a 'controlling idea' versus mere factual statements finally clicked after reviewing Unit 01. The before-and-after examples in the slides made paragraph development straightforward.",
-   "likes": 22
+   "likes": 22,
+   "timestamp": 1712793600000
   },
   {
    "id": "c33",
    "name": "Student #3182",
    "affiliation": "Public Speaking & Debating (COM 1301)",
-   "date": "3 weeks ago",
+   "date": "Sep 12, 2026",
    "course": "public-speaking",
    "text": "The slides on Monroe's Motivated Sequence are thorough, but the 4-minute time limit for the persuasive speech felt way too short. Almost everyone in our recitation section got cut off before delivering their call to action.",
-   "likes": 35
+   "likes": 35,
+   "timestamp": 1789167600000
   },
   {
    "id": "c5",
    "name": "Fatima-Zahra L.",
    "affiliation": "Al Akhawayn University Alum",
-   "date": "1 week ago",
+   "date": "Oct 03, 2025",
    "course": "leadership-communication",
    "text": "Professor Naciri's course on Leadership and Communication remains one of the most practical classes I took at AUI. The negotiation frameworks (BATNA) and active listening techniques are tools I use daily in my project management role.",
-   "likes": 41
+   "likes": 41,
+   "timestamp": 1759446000000
   },
   {
    "id": "c6",
    "name": "Student #1844",
    "affiliation": "English Grammar",
-   "date": "10 days ago",
+   "date": "Feb 17, 2022",
    "course": "english-grammar",
    "text": "Passive voice with agent omission was always confusing in our secondary school textbooks. Unit 15 explained the academic rationale so clearly—especially why researchers use it to emphasize findings rather than the actor.",
-   "likes": 15
+   "likes": 15,
+   "timestamp": 1645052400000
   },
   {
    "id": "c7",
    "name": "Y**** R.",
    "affiliation": "Composition S2",
-   "date": "2 weeks ago",
+   "date": "Feb 14, 2025",
    "course": "composition",
    "text": "Unit 07 on paragraph unity and transitional signals saved my midterm paper. I used to write long rambling paragraphs; now my major and minor supporting sentences are organized cleanly.",
-   "likes": 17
+   "likes": 17,
+   "timestamp": 1739487600000
   },
   {
    "id": "c8",
    "name": "M**** S.",
    "affiliation": "Leadership & Communication",
-   "date": "2 weeks ago",
+   "date": "Nov 18, 2023",
    "course": "leadership-communication",
    "text": "The breakdown of Tuckman's model (Forming, Storming, Norming, Performing) helped our group understand why we had friction during the first two weeks of our group project. We handled our differences constructively.",
-   "likes": 25
+   "likes": 25,
+   "timestamp": 1700262000000
   },
   {
    "id": "c9",
    "name": "Student #3107",
    "affiliation": "Writing for Business",
-   "date": "3 weeks ago",
+   "date": "Jun 19, 2025",
    "course": "business-writing",
    "text": "Module 06 on Resumé Architecture and avoiding complex multi-column graphics for ATS screening was invaluable advice. I revised my CV according to the action verb formula and already passed initial HR screening.",
-   "likes": 31
+   "likes": 31,
+   "timestamp": 1750287600000
   },
   {
    "id": "c10",
    "name": "H. T.",
    "affiliation": "Public Speaking & Debating",
-   "date": "3 weeks ago",
+   "date": "Mar 14, 2023",
    "course": "public-speaking",
    "text": "Aristotle's rhetorical triangle (Ethos, Pathos, Logos) combined with Monroe's Motivated Sequence in Unit 06 provided the exact scaffolding I needed for my persuasive speech on environmental conservation.",
-   "likes": 20
+   "likes": 20,
+   "timestamp": 1678748400000
   },
   {
    "id": "c11",
    "name": "Anonymous (S2 Student)",
    "affiliation": "English Grammar",
-   "date": "Oct 12, 2026",
+   "date": "Nov 26, 2019",
    "course": "english-grammar",
    "text": "The conditional inversion rules (Had I known..., Were she to...) in Unit 04 are explained with great academic clarity. Really appreciate the review slides before the exams.",
-   "likes": 12
+   "likes": 12,
+   "timestamp": 1574722800000
   },
   {
    "id": "c34",
    "name": "O**** T.",
    "affiliation": "English Grammar (S1 & S2)",
-   "date": "2 weeks ago",
+   "date": "Dec 04, 2024",
    "course": "english-grammar",
    "text": "Unit 04 on conditional inversions and past subjunctive structures felt overly theoretical. The midterm exam questions were significantly harder than the practice exercises on the slides, which caught many of us off guard.",
-   "likes": 11
+   "likes": 11,
+   "timestamp": 1733266800000
   },
   {
    "id": "c12",
    "name": "S**** E.",
    "affiliation": "Writing for Business",
-   "date": "Oct 10, 2026",
+   "date": "Jan 28, 2024",
    "course": "business-writing",
    "text": "The 6 steps of case study analysis in Module 07 are comprehensive and rigorous. It forces you to distinguish the root business problem from surface symptoms before jumping to conclusions.",
-   "likes": 27
+   "likes": 27,
+   "timestamp": 1706396400000
   },
   {
    "id": "c13",
    "name": "Student #5520",
    "affiliation": "Composition S2",
-   "date": "Oct 8, 2026",
+   "date": "Oct 15, 2026",
    "course": "composition",
    "text": "Just completed the Unit 03 quiz and submitted my screenshot via email! It really tests whether you actually read the slides and grasped the difference between unity and coherence.",
-   "likes": 18
+   "likes": 18,
+   "timestamp": 1792022400000
   },
   {
    "id": "c14",
    "name": "O. K.",
    "affiliation": "Moulay Ismail University",
-   "date": "Oct 5, 2026",
+   "date": "Dec 10, 2022",
    "course": "general",
    "text": "The reading viewer is so clean and fast! The offline view-only setup protects the materials while letting us review slides comfortably on our laptops and phones without login issues.",
-   "likes": 23
+   "likes": 23,
+   "timestamp": 1670626800000
   },
   {
    "id": "c15",
    "name": "N. B.",
    "affiliation": "Writing for Business",
-   "date": "Oct 2, 2026",
+   "date": "May 29, 2021",
    "course": "business-writing",
    "text": "The pitch deck structure in Module 09 is top-tier. Most business templates online are filled with clutter, but Dr. Naciri's framework emphasizes problem-solution fit and clear metrics.",
-   "likes": 16
+   "likes": 16,
+   "timestamp": 1622242800000
   },
   {
    "id": "c16",
    "name": "Student #2904",
    "affiliation": "Leadership & Communication",
-   "date": "Sep 28, 2026",
+   "date": "Jun 15, 2024",
    "course": "leadership-communication",
    "text": "Understanding high-context vs low-context cultures in Unit 12 completely changed how I perceive cross-cultural communication during group projects with international exchange students.",
-   "likes": 29
+   "likes": 29,
+   "timestamp": 1718406000000
   },
   {
    "id": "c17",
    "name": "Z**** A.",
    "affiliation": "Public Speaking",
-   "date": "Sep 25, 2026",
+   "date": "May 12, 2020",
    "course": "public-speaking",
    "text": "Holding eye contact for 3 to 5 seconds per audience sector instead of scanning rapidly was such a simple tip from Unit 05, but it completely changed the feedback I received from my peers.",
-   "likes": 14
+   "likes": 14,
+   "timestamp": 1589241600000
   },
   {
    "id": "c18",
    "name": "Anonymous Student",
    "affiliation": "English Grammar",
-   "date": "Sep 22, 2026",
+   "date": "Apr 08, 2019",
    "course": "english-grammar",
    "text": "The modal verbs of deduction unit (must have been vs might have been vs can't have been) cleared up years of confusion for me. The contextual examples are very helpful.",
-   "likes": 11
+   "likes": 11,
+   "timestamp": 1554678000000
   },
   {
    "id": "c35",
    "name": "Anonymous (S2)",
    "affiliation": "Composition S2",
-   "date": "10 days ago",
+   "date": "May 08, 2025",
    "course": "composition",
    "text": "The grading rubric on paragraph unity and comma splices in Unit 03 is way too strict. Losing major marks for minor transitional punctuation felt harsh, especially with only 48 hours to complete the revision draft.",
-   "likes": 9
+   "likes": 9,
+   "timestamp": 1746658800000
   },
   {
    "id": "c19",
    "name": "R**** K.",
    "affiliation": "Composition S2",
-   "date": "Sep 19, 2026",
+   "date": "Sep 08, 2021",
    "course": "composition",
    "text": "Revising vs proofreading: learning that revising is macro (structure, logic) while proofreading is micro (grammar, punctuation) completely streamlined my revision workflow.",
-   "likes": 19
+   "likes": 19,
+   "timestamp": 1631055600000
   },
   {
    "id": "c20",
    "name": "Student #7119",
    "affiliation": "Writing for Business",
-   "date": "Sep 15, 2026",
+   "date": "Sep 14, 2023",
    "course": "business-writing",
    "text": "The Statement of Work (SOW) slide in the Business Proposals unit taught us how to avoid scope creep in freelance contracts. Essential professional knowledge for every graduating student.",
-   "likes": 26
+   "likes": 26,
+   "timestamp": 1694646000000
   },
   {
    "id": "c21",
    "name": "I. M.",
    "affiliation": "Public Speaking & Debating",
-   "date": "Sep 12, 2026",
+   "date": "May 06, 2022",
    "course": "public-speaking",
    "text": "Extemporaneous speaking with key-word outlines is so much more engaging than reading from a script. Dr. Naciri's drills helped me ditch full scripts for good.",
-   "likes": 21
+   "likes": 21,
+   "timestamp": 1651795200000
   },
   {
    "id": "c22",
    "name": "W**** D.",
    "affiliation": "Leadership & Communication",
-   "date": "Sep 8, 2026",
+   "date": "Mar 02, 2021",
    "course": "leadership-communication",
    "text": "Fiedler's Contingency Model and Goleman's Emotional Intelligence components gave our study group a solid framework for analyzing leadership case studies in class.",
-   "likes": 17
+   "likes": 17,
+   "timestamp": 1614639600000
   },
   {
    "id": "c23",
    "name": "Student #8432",
    "affiliation": "English Grammar",
-   "date": "Sep 4, 2026",
+   "date": "Feb 25, 2020",
    "course": "english-grammar",
    "text": "Uncountable academic nouns like 'research', 'information', and 'equipment'—finally stopped making the mistake of writing 'an advice' or 'many researches' in formal papers!",
-   "likes": 13
+   "likes": 13,
+   "timestamp": 1582585200000
   },
   {
    "id": "c24",
    "name": "L**** F.",
    "affiliation": "Composition S2",
-   "date": "Aug 29, 2026",
+   "date": "Dec 14, 2020",
    "course": "composition",
    "text": "The point-by-point vs block methods for compare-and-contrast essays in Unit 09-16 are laid out so clearly. It made writing our final analytical paper manageable.",
-   "likes": 15
+   "likes": 15,
+   "timestamp": 1607900400000
   },
   {
    "id": "c25",
    "name": "T. N.",
    "affiliation": "AUI Exchange Student",
-   "date": "Aug 25, 2026",
+   "date": "Oct 22, 2024",
    "course": "public-speaking",
    "text": "Dr. Naciri creates such a supportive atmosphere in class. Her feedback on speech outlines helped me overcome nervousness that I struggled with for years.",
-   "likes": 30
+   "likes": 30,
+   "timestamp": 1729551600000
   },
   {
    "id": "c26",
    "name": "Student #6280",
    "affiliation": "Writing for Business",
-   "date": "Aug 20, 2026",
+   "date": "Oct 04, 2026",
    "course": "business-writing",
    "text": "Took the email quiz and got 3/3! Sent the screenshot to Dr. Naciri. The verification code is such a neat feature to confirm we did our reading.",
-   "likes": 14
+   "likes": 14,
+   "timestamp": 1791072000000
   },
   {
    "id": "c27",
    "name": "B**** H.",
    "affiliation": "Leadership & Communication",
-   "date": "Aug 15, 2026",
+   "date": "Sep 18, 2022",
    "course": "leadership-communication",
    "text": "The Groupthink symptoms in the decision-making unit were eye-opening. We realized how often teams stay silent when a leader dominates the conversation.",
-   "likes": 22
+   "likes": 22,
+   "timestamp": 1663455600000
   },
   {
    "id": "c28",
    "name": "Anonymous (Class of 2025)",
    "affiliation": "Moulay Ismail University",
-   "date": "Aug 10, 2026",
+   "date": "Nov 12, 2025",
    "course": "general",
    "text": "One of the best professors at UMI. Dedicated, precise, and genuinely invested in helping students communicate with confidence and academic rigor.",
-   "likes": 48
+   "likes": 48,
+   "timestamp": 1762902000000
   },
   {
    "id": "c29",
    "name": "J**** E.",
    "affiliation": "English Grammar",
-   "date": "Aug 5, 2026",
+   "date": "Oct 20, 2020",
    "course": "english-grammar",
    "text": "Parallel structure errors and dangling modifiers were my biggest weaknesses in written English. The exercises in Unit 24-25 corrected those habits.",
-   "likes": 16
+   "likes": 16,
+   "timestamp": 1603148400000
   },
   {
    "id": "c30",
    "name": "G. S.",
    "affiliation": "Composition S2",
-   "date": "Jul 28, 2026",
+   "date": "Oct 14, 2019",
    "course": "composition",
    "text": "Causal chains in cause-and-effect writing were explained masterfully in the modes of writing slides. Highly recommend every S2 student review these.",
-   "likes": 12
+   "likes": 12,
+   "timestamp": 1571007600000
   },
   {
    "id": "c31",
    "name": "D**** C.",
    "affiliation": "Writing for Business",
-   "date": "Jul 20, 2026",
+   "date": "Nov 15, 2021",
    "course": "business-writing",
    "text": "Direct vs indirect approaches in memos: knowing when to give the bottom line first versus when to build up rationale for sensitive news was crucial for our case study.",
-   "likes": 20
+   "likes": 20,
+   "timestamp": 1636930800000
   },
   {
    "id": "c32",
    "name": "Student #9021",
    "affiliation": "Public Speaking & Debating",
-   "date": "Jul 15, 2026",
+   "date": "Jun 22, 2023",
    "course": "public-speaking",
    "text": "The vocal variety concepts in Unit 05—varying pitch and deliberate pauses—helped me score the highest grade in our final debate round. Thank you Prof. Naciri!",
-   "likes": 27
+   "likes": 27,
+   "timestamp": 1687388400000
   }
  ]
 };

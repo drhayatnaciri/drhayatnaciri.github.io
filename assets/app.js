@@ -258,7 +258,7 @@
           '<div class="course-head" style="padding-top:0">' +
             '<div class="crumbs"><a href="#/">Home</a> / Classes</div>' +
             '<h1>Academic Classes & Units</h1>' +
-            '<p>Official curriculum, weekly timetables, lecture slides, and assessment guidelines for 3ème année and 4ème année.</p>' +
+            '<p>Course materials and units for 3ème année and 4ème année.</p>' +
           '</div>' +
           tabsHtml +
           '<div class="classes-container">' +

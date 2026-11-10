@@ -92,6 +92,7 @@
           '<ul class="chips">' + p.interests.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>" +
           '<div class="actions">' +
             '<a class="btn primary" href="#/courses">Course material</a>' +
+            '<a class="btn ghost" href="#/classes">Academic classes</a>' +
             '<a class="btn ghost" href="#/quizzes">Reading quizzes</a>' +
             '<a class="btn ghost" href="#/announcements">Announcements</a>' +
             '<a class="btn ghost" href="#/comments">Student feedback</a>' +
@@ -116,6 +117,159 @@
         '</div>' +
         courseCards() +
       '</div>';
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- classes page ----------
+  function classesPage(filterId) {
+    var classes = S.classes || [];
+    var activeFilter = filterId || "all";
+    if (activeFilter !== "all" && !classes.some(function (c) { return c.id === activeFilter; })) {
+      activeFilter = "all";
+    }
+
+    function renderClassCard(c) {
+      var scheduleRows = (c.schedule || []).map(function (s) {
+        return '<tr class="class-sched-row">' +
+          '<td class="sched-day-time"><strong>' + esc(s.day) + '</strong><span class="sched-time">' + esc(s.time) + '</span></td>' +
+          '<td class="sched-course"><strong>' + esc(s.course) + '</strong></td>' +
+          '<td class="sched-room"><span class="sched-room-badge">📍 ' + esc(s.room) + '</span></td>' +
+          '<td class="sched-type"><span class="sched-type-tag">' + esc(s.type) + '</span></td>' +
+        '</tr>';
+      }).join("");
+
+      var modulesHtml = (c.modules || []).map(function (m) {
+        var featured = (m.featuredUnits || []).map(function (u) {
+          return '<a class="class-unit-pill" href="#/course/' + esc(u.courseId) + '/' + esc(u.id) + '">' +
+            '📑 ' + esc(u.title) + '</a>';
+        }).join("");
+
+        return '<div class="class-module-card">' +
+          '<div class="class-module-head">' +
+            (m.code ? '<span class="code">' + esc(m.code) + '</span>' : '') +
+            '<h4>' + esc(m.title) + '</h4>' +
+            '<span class="badge neutral">' + m.unitsCount + ' Units · ' + m.docsCount + ' Docs</span>' +
+          '</div>' +
+          '<p class="class-module-desc">' + esc(m.description) + '</p>' +
+          (featured ? '<div class="class-units-box"><span class="class-units-label">Key Lecture Units:</span><div class="class-units-list">' + featured + '</div></div>' : '') +
+          '<div class="class-module-actions">' +
+            '<a class="btn primary btn-sm" href="#/course/' + esc(m.courseId) + '">Explore Course Material →</a>' +
+            (m.quizLink ? '<a class="btn ghost btn-sm" href="' + esc(m.quizLink) + '">Practice Quizzes →</a>' : '') +
+          '</div>' +
+        '</div>';
+      }).join("");
+
+      var assessmentsHtml = (c.assessments || []).map(function (a) {
+        return '<div class="class-assessment-card">' +
+          '<div class="assessment-head">' +
+            '<strong>' + esc(a.title) + '</strong>' +
+            '<span class="assessment-weight">' + esc(a.weight) + '</span>' +
+          '</div>' +
+          '<p>' + esc(a.desc) + '</p>' +
+        '</div>';
+      }).join("");
+
+      var cohortsHtml = (c.cohorts || []).map(function (ch) {
+        return '<span class="class-cohort-chip">🎓 ' + esc(ch) + '</span>';
+      }).join("");
+
+      return '<article class="class-card" id="class-' + esc(c.id) + '" data-class="' + esc(c.id) + '">' +
+        '<header class="class-header">' +
+          '<div class="class-title-meta">' +
+            '<div class="class-badge-row">' +
+              '<span class="class-cohort-badge">' + esc(c.badge) + '</span>' +
+              '<span class="class-cycle-tag">' + esc(c.level) + '</span>' +
+            '</div>' +
+            '<h2 class="class-main-title">' + esc(c.year) + '</h2>' +
+            '<p class="class-tagline">' + esc(c.tagline) + '</p>' +
+          '</div>' +
+        '</header>' +
+
+        '<div class="class-body">' +
+          '<p class="class-lead-desc">' + esc(c.description) + '</p>' +
+
+          '<div class="class-section-block">' +
+            '<h3 class="class-block-heading"><span class="heading-icon">🎯</span> Enrolled Cohorts & University Programs</h3>' +
+            '<div class="class-cohorts-list">' + cohortsHtml + '</div>' +
+          '</div>' +
+
+          '<div class="class-section-block">' +
+            '<h3 class="class-block-heading"><span class="heading-icon">📅</span> Weekly Class Schedule & Timetable</h3>' +
+            '<div class="class-schedule-table-wrap">' +
+              '<table class="class-schedule-table">' +
+                '<thead>' +
+                  '<tr><th>Day & Time</th><th>Subject / Module</th><th>Room / Location</th><th>Session Format</th></tr>' +
+                '</thead>' +
+                '<tbody>' + scheduleRows + '</tbody>' +
+              '</table>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="class-section-block">' +
+            '<h3 class="class-block-heading"><span class="heading-icon">📚</span> Enrolled Course Modules & Reading Units</h3>' +
+            '<div class="class-modules-grid">' + modulesHtml + '</div>' +
+          '</div>' +
+
+          '<div class="class-section-block">' +
+            '<h3 class="class-block-heading"><span class="heading-icon">📋</span> Assessment & Continuous Evaluation</h3>' +
+            '<div class="class-assessments-grid">' + assessmentsHtml + '</div>' +
+          '</div>' +
+
+          '<div class="class-footer-actions">' +
+            '<a class="btn primary" href="#/courses">Browse All Slides for ' + esc(c.year) + ' →</a>' +
+            '<a class="btn ghost" href="#/quizzes">Self-Assessment Quizzes →</a>' +
+            '<a class="btn ghost" href="#/announcements">Class Announcements →</a>' +
+          '</div>' +
+        '</div>' +
+      '</article>';
+    }
+
+    function render() {
+      var filtered = classes.filter(function (c) {
+        if (activeFilter === "all") return true;
+        return c.id === activeFilter;
+      });
+
+      var cardsHtml = filtered.map(renderClassCard).join("");
+
+      var tabsHtml = '<div class="classes-filter-bar" role="tablist">' +
+        '<button class="classes-tab-btn ' + (activeFilter === "all" ? "active" : "") + '" data-tab="all" type="button">' +
+          'All Classes (' + classes.length + ')' +
+        '</button>' +
+        classes.map(function (c) {
+          return '<button class="classes-tab-btn ' + (activeFilter === c.id ? "active" : "") + '" data-tab="' + esc(c.id) + '" type="button">' +
+            esc(c.year) + ' <small>(' + esc(c.badge) + ')</small>' +
+          '</button>';
+        }).join("") +
+      '</div>';
+
+      app.innerHTML =
+        '<div class="wrap classes-wrap">' +
+          '<div class="course-head" style="padding-top:0">' +
+            '<div class="crumbs"><a href="#/">Home</a> / Classes</div>' +
+            '<h1>Academic Classes & Units</h1>' +
+            '<p>Official curriculum, weekly timetables, lecture slides, and assessment guidelines for 3ème année (Licence) and 4ème année (Master) taught by Dr. Hayat Naciri.</p>' +
+          '</div>' +
+          tabsHtml +
+          '<div class="classes-container">' +
+            cardsHtml +
+          '</div>' +
+        '</div>';
+
+      app.querySelectorAll(".classes-tab-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activeFilter = btn.dataset.tab;
+          if (activeFilter === "all") {
+            history.replaceState(null, "", "#/classes");
+          } else {
+            history.replaceState(null, "", "#/classes/" + activeFilter);
+          }
+          render();
+        });
+      });
+    }
+
+    render();
     window.scrollTo(0, 0);
   }
 
@@ -1217,7 +1371,8 @@
     var parts = location.hash.replace(/^#\/?/, "").split("/");
     document.querySelectorAll("[data-nav]").forEach(function (a) {
       var n = a.dataset.nav;
-      if (parts[0] === "quizzes" || parts[0] === "quiz") a.classList.toggle("on", n === "quizzes");
+      if (parts[0] === "classes" || parts[0] === "class") a.classList.toggle("on", n === "classes");
+      else if (parts[0] === "quizzes" || parts[0] === "quiz") a.classList.toggle("on", n === "quizzes");
       else if (parts[0] === "announcements") a.classList.toggle("on", n === "announcements");
       else if (parts[0] === "comments") a.classList.toggle("on", n === "comments");
       else if (parts[0] === "course" || parts[0] === "courses") a.classList.toggle("on", n === "courses");
@@ -1238,6 +1393,13 @@
       if (app.dataset.course !== parts[1]) { coursePage(parts[1]); app.dataset.course = parts[1]; window.scrollTo(0, 0); }
       var u = parts[2] && document.getElementById("unit-" + parts[2]);
       if (u) u.scrollIntoView();
+      return;
+    }
+    if (parts[0] === "classes" || parts[0] === "class") {
+      app.dataset.course = "";
+      setTitle("Classes & Academic Cohorts");
+      classesPage(parts[1]);
+      window.scrollTo(0, 0);
       return;
     }
     if (parts[0] === "quizzes") {

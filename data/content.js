@@ -1120,6 +1120,305 @@ window.SITE = {
    ]
   }
  ],
+ "classes": [
+  {
+   "id": "3eme-annee",
+   "year": "3ème année",
+   "level": "Licence / Cycle Undergraduate (S5 & S6)",
+   "badge": "Undergraduate Senior",
+   "tagline": "Professional Communication, Workplace Writing, and Formal Argumentation",
+   "description": "The 3ème année (Licence) curriculum trains graduating undergraduate students for professional employment and postgraduate study through intensive practice in executive correspondence, Harvard-style resumé design, structured oral delivery, and rhetorical persuasion.",
+   "cohorts": [
+    "Licence Professionnelle (LP BB & MLBCQ)",
+    "LST - Techniques de Distribution & Commerce Numérique (TDCN)",
+    "Licence Fondamentale - Administration, Gestion & Économie Appliquée (AGDEA / GEDD)",
+    "Techniques de Commercialisation et Communication (TCC S3 / S6)"
+   ],
+   "schedule": [
+    {
+     "day": "Monday",
+     "time": "08:30 – 10:30",
+     "course": "Writing for Business & Professional Communication",
+     "room": "Amphi B / Salle 14",
+     "type": "Lecture & Practical Workshop"
+    },
+    {
+     "day": "Wednesday",
+     "time": "10:45 – 12:45",
+     "course": "Public Speaking & Parliamentary Debate",
+     "room": "Salle 22 (Language Lab)",
+     "type": "Speech Delivery & Group Debates"
+    },
+    {
+     "day": "Thursday",
+     "time": "14:00 – 16:00",
+     "course": "English Grammar & Academic Composition",
+     "room": "Amphi A",
+     "type": "Grammar Mastery & Essay Drafting"
+    }
+   ],
+   "modules": [
+    {
+     "courseId": "business-writing",
+     "title": "Writing for Business & Career Communication",
+     "code": "ENG 301",
+     "description": "Covers executive memos, Harvard-style resumé design, professional job inquiry letters, and the 6-step business case study analysis framework.",
+     "unitsCount": 7,
+     "docsCount": 27,
+     "featuredUnits": [
+      {
+       "id": "04-memos",
+       "title": "Corporate Memos & Problem-Solving",
+       "courseId": "business-writing"
+      },
+      {
+       "id": "06-resume",
+       "title": "Harvard Resumé Architecture & Cover Letters",
+       "courseId": "business-writing"
+      },
+      {
+       "id": "07-case-study",
+       "title": "6-Step Case Study Methodology",
+       "courseId": "business-writing"
+      }
+     ],
+     "quizLink": "#/quiz/business-writing/04-memos"
+    },
+    {
+     "courseId": "public-speaking",
+     "title": "Public Speaking & Rhetorical Debating",
+     "code": "COM 1301",
+     "description": "Principles of ethical public persuasion, overcoming stage fright, Monroe's Motivated Sequence, and formal debate rebuttal structures.",
+     "unitsCount": 6,
+     "docsCount": 31,
+     "featuredUnits": [
+      {
+       "id": "foundations",
+       "title": "Foundations & Speech Ethics",
+       "courseId": "public-speaking"
+      },
+      {
+       "id": "delivery",
+       "title": "Body Language, Vocal Variety & Stage Presence",
+       "courseId": "public-speaking"
+      },
+      {
+       "id": "persuasion",
+       "title": "Persuasive Speeches & Logical Fallacies",
+       "courseId": "public-speaking"
+      }
+     ],
+     "quizLink": "#/quiz/public-speaking/foundations"
+    },
+    {
+     "courseId": "english-grammar",
+     "title": "Advanced English Grammar & Sentence Mechanics",
+     "code": "ENG 305",
+     "description": "Deep study of conditional inversion (Had I known, Were he to arrive), subjunctive structures, modal subtleties, and formal academic register.",
+     "unitsCount": 7,
+     "docsCount": 17,
+     "featuredUnits": [
+      {
+       "id": "unit-01",
+       "title": "Verbs, Tenses & Complex Aspects",
+       "courseId": "english-grammar"
+      },
+      {
+       "id": "unit-04",
+       "title": "Conditionals, Subjunctives & Inversion",
+       "courseId": "english-grammar"
+      },
+      {
+       "id": "unit-07",
+       "title": "Prepositions, Connectors & Cohesion",
+       "courseId": "english-grammar"
+      }
+     ],
+     "quizLink": "#/quiz/english-grammar/unit-04"
+    },
+    {
+     "courseId": "composition",
+     "title": "Academic Composition & Essay Architecture",
+     "code": "ENG 302",
+     "description": "Techniques for controlling ideas, topic sentence precision, argumentative paragraphs, and transitional unity in academic papers.",
+     "unitsCount": 5,
+     "docsCount": 15,
+     "featuredUnits": [
+      {
+       "id": "unit-01",
+       "title": "The Paragraph Structure & Controlling Ideas",
+       "courseId": "composition"
+      },
+      {
+       "id": "unit-04",
+       "title": "Expository & Comparison Essays",
+       "courseId": "composition"
+      },
+      {
+       "id": "unit-05",
+       "title": "Argumentative Synthesis & Coherence",
+       "courseId": "composition"
+      }
+     ],
+     "quizLink": "#/quiz/composition/unit-01"
+    }
+   ],
+   "assessments": [
+    {
+     "title": "Continuous Assessment & Reading Quizzes",
+     "weight": "25%",
+     "desc": "Completion of online unit reading quizzes on this platform with verification code screenshot submission."
+    },
+    {
+     "title": "Midterm Persuasive Speech (Amphi B)",
+     "weight": "25%",
+     "desc": "5-to-7 minute individual persuasive speech delivered using Monroe's Motivated Sequence and visual support."
+    },
+    {
+     "title": "Professional Employment Portfolio",
+     "weight": "20%",
+     "desc": "Complete dossier featuring a targeted Harvard-style resumé, formal cover letter, and a 2-page executive business memo."
+    },
+    {
+     "title": "Final Written Examination",
+     "weight": "30%",
+     "desc": "End-of-semester written test evaluating grammar precision, case study analysis, and rhetorical composition."
+    }
+   ]
+  },
+  {
+   "id": "4eme-annee",
+   "year": "4ème année",
+   "level": "Master 1 / Cycle Supérieur (Semesters 7 & 8 / Master S1 & S2)",
+   "badge": "Master Level / Postgraduate",
+   "tagline": "Executive Leadership, Strategic Communication, Negotiation & Research Colloquium",
+   "description": "The 4ème année (Master 1) program trains postgraduate students in executive decision-making, organizational conflict negotiation, corporate crisis communication, high-stakes boardroom pitch decks, and empirical thesis (PFE) research methodology.",
+   "cohorts": [
+    "Master MRH (Management des Ressources Humaines / HR Management)",
+    "Master GTER (Gestion et Traitement des Eaux et Déchets)",
+    "Master Spécialisé - Communication Stratégique & Conduite du Changement",
+    "Master Professionnel - Économie, Audit & Gestion d'Entreprise"
+   ],
+   "schedule": [
+    {
+     "day": "Tuesday",
+     "time": "14:30 – 17:30",
+     "course": "Leadership and Strategic Communication",
+     "room": "Master Seminar Room 04 (Salle Séminaire MRH)",
+     "type": "Interactive Seminar & Case Analysis"
+    },
+    {
+     "day": "Friday",
+     "time": "09:00 – 12:00",
+     "course": "Research Methodology, Colloquium & Pitch Decks",
+     "room": "Salle Multimédia 2 / Laboratoire Doctoral",
+     "type": "Executive Pitch Coaching & Thesis Defense Simulation"
+    }
+   ],
+   "modules": [
+    {
+     "courseId": "leadership-communication",
+     "title": "Leadership & Executive Communication",
+     "code": "MGT 501",
+     "description": "Transformational leadership theory, emotional intelligence in crisis management, cross-cultural diplomacy, ethical governance, and strategic team leadership.",
+     "unitsCount": 6,
+     "docsCount": 26,
+     "featuredUnits": [
+      {
+       "id": "unit-01",
+       "title": "The Nature of Executive Leadership",
+       "courseId": "leadership-communication"
+      },
+      {
+       "id": "unit-03",
+       "title": "Conflict Management & Integrative Negotiation",
+       "courseId": "leadership-communication"
+      },
+      {
+       "id": "unit-05",
+       "title": "Corporate Crisis Communication & Vision",
+       "courseId": "leadership-communication"
+      }
+     ],
+     "quizLink": "#/quiz/leadership-communication/unit-01"
+    },
+    {
+     "courseId": "business-writing",
+     "title": "Strategic Business Proposals & Executive Pitch Decks",
+     "code": "MGT 504",
+     "description": "Formulating investor-grade pitch presentations, high-stakes executive summaries, corporate consulting reports, and stakeholder alignment strategies.",
+     "unitsCount": 7,
+     "docsCount": 27,
+     "featuredUnits": [
+      {
+       "id": "07-case-study",
+       "title": "Advanced 6-Step Case Study Formulation",
+       "courseId": "business-writing"
+      },
+      {
+       "id": "05-reports",
+       "title": "Formal Analytical Reports & Proposals",
+       "courseId": "business-writing"
+      },
+      {
+       "id": "04-memos",
+       "title": "Executive Decision Memos",
+       "courseId": "business-writing"
+      }
+     ],
+     "quizLink": "#/quiz/business-writing/07-case-study"
+    },
+    {
+     "courseId": "public-speaking",
+     "title": "High-Stakes Persuasion & Keynote Colloquium",
+     "code": "COM 502",
+     "description": "Executive presence, boardroom pitching, moderating symposium panels, crisis media interviews, and keynote address delivery.",
+     "unitsCount": 6,
+     "docsCount": 31,
+     "featuredUnits": [
+      {
+       "id": "persuasion",
+       "title": "Psychology of Persuasion & Influence",
+       "courseId": "public-speaking"
+      },
+      {
+       "id": "delivery",
+       "title": "Executive Delivery & Non-Verbal Mastery",
+       "courseId": "public-speaking"
+      },
+      {
+       "id": "audience",
+       "title": "Stakeholder & International Audience Profiling",
+       "courseId": "public-speaking"
+      }
+     ],
+     "quizLink": "#/quiz/public-speaking/persuasion"
+    }
+   ],
+   "assessments": [
+    {
+     "title": "Executive Crisis Simulation Defense",
+     "weight": "30%",
+     "desc": "Team oral presentation responding to an unexpected organizational crisis scenario before an evaluator jury panel."
+    },
+    {
+     "title": "Master's Thesis Research Proposal (PFE Pre-Draft)",
+     "weight": "30%",
+     "desc": "1,500-word academic abstract, literature review synthesis, and methodology framework formatted according to international research standards."
+    },
+    {
+     "title": "Continuous Case Comprehension Quizzes",
+     "weight": "20%",
+     "desc": "Reading verification on leadership ethics, organizational communication, and case analysis methodology."
+    },
+    {
+     "title": "Seminar Participation & Debate Moderation",
+     "weight": "20%",
+     "desc": "Weekly contribution to seminar discussions, critique of peers' research presentations, and executive role-play exercises."
+    }
+   ]
+  }
+ ],
  "quizzes": {
   "public-speaking--foundations": {
    "title": "Unit 1: Foundations of Public Speaking",

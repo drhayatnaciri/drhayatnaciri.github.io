@@ -285,22 +285,97 @@
   }
 
   // ---------- sources page ----------
-  function sourcesPage() {
-    var sources = S.sources || [];
-    var html =
-      '<div class="wrap sources-wrap" style="padding:40px 16px 60px">' +
-        '<div class="course-head" style="padding-top:0">' +
-          '<div class="crumbs"><a href="#/">Home</a> / Sources</div>' +
-          '<h1>Sources</h1>' +
-          '<p>Academic references, course bibliography, and external resources.</p>' +
-        '</div>' +
-        '<div class="empty sources-empty-box" style="margin:24px 0;border:1px dashed var(--line);border-radius:14px;padding:48px 20px;text-align:center;background:var(--surface)">' +
-          '<div style="font-size:2.2rem;margin-bottom:10px">📚</div>' +
-          '<h3 style="margin:0 0 8px;font-size:1.2rem;color:var(--navy);font-family:var(--serif)">Sources & References</h3>' +
-          '<p style="margin:0;color:var(--muted);font-size:.95rem">Content for this section will be added here.</p>' +
-        '</div>' +
+  function sourcesPage(filterId) {
+    var courses = S.courses || [];
+    var activeFilter = filterId || "all";
+    if (activeFilter !== "all" && !courses.some(function (c) { return c.id === activeFilter; })) {
+      activeFilter = "all";
+    }
+
+    function renderSourceCard(c) {
+      var courseSources = (S.sources || []).filter(function (s) {
+        return s.courseId === c.id;
+      });
+
+      var bodyHtml = '';
+      if (!courseSources.length) {
+        bodyHtml = '<div class="empty source-empty-box" style="margin:4px 0 0;border:1px dashed var(--line);border-radius:12px;padding:36px 20px;text-align:center;background:var(--bg)">' +
+          '<div style="font-size:2rem;margin-bottom:8px">📚</div>' +
+          '<h3 style="margin:0 0 6px;font-size:1.15rem;color:var(--navy);font-family:var(--serif)">No sources added yet</h3>' +
+          '<p style="margin:0;color:var(--muted);font-size:.95rem">Academic sources, bibliography, and references for <strong>' + esc(c.title) + '</strong> will be added here.</p>' +
+        '</div>';
+      } else {
+        bodyHtml = '<div class="source-items-list">' +
+          courseSources.map(function (s) {
+            return '<div class="source-item-card">' +
+              '<h4>' + esc(s.title) + '</h4>' +
+              (s.author ? '<p class="source-author">' + esc(s.author) + (s.year ? ' (' + esc(s.year) + ')' : '') + '</p>' : '') +
+              (s.description ? '<p class="source-desc">' + esc(s.description) + '</p>' : '') +
+              (s.url ? '<a class="source-link" href="' + esc(s.url) + '" target="_blank" rel="noopener">Access Resource ↗</a>' : '') +
+            '</div>';
+          }).join("") +
+        '</div>';
+      }
+
+      return '<article class="source-card" id="source-course-' + esc(c.id) + '" data-course="' + esc(c.id) + '">' +
+        '<header class="source-card-header">' +
+          '<div class="source-card-meta">' +
+            (c.code ? '<span class="code">' + esc(c.code) + '</span>' : '') +
+            '<span class="source-course-badge">Course Sources</span>' +
+          '</div>' +
+          '<h2 class="source-card-title">' + esc(c.title) + '</h2>' +
+          (c.blurb ? '<p class="source-card-blurb">' + esc(c.blurb) + '</p>' : '') +
+        '</header>' +
+        '<div class="source-card-body">' + bodyHtml + '</div>' +
+      '</article>';
+    }
+
+    function render() {
+      var filtered = courses.filter(function (c) {
+        if (activeFilter === "all") return true;
+        return c.id === activeFilter;
+      });
+
+      var cardsHtml = filtered.map(renderSourceCard).join("");
+
+      var tabsHtml = '<div class="sources-filter-bar" role="tablist">' +
+        '<button class="sources-tab-btn ' + (activeFilter === "all" ? "active" : "") + '" data-tab="all" type="button">' +
+          'All Courses (' + courses.length + ')' +
+        '</button>' +
+        courses.map(function (c) {
+          return '<button class="sources-tab-btn ' + (activeFilter === c.id ? "active" : "") + '" data-tab="' + esc(c.id) + '" type="button">' +
+            esc(c.title) +
+          '</button>';
+        }).join("") +
       '</div>';
-    app.innerHTML = html;
+
+      app.innerHTML =
+        '<div class="wrap sources-wrap">' +
+          '<div class="course-head" style="padding-top:0">' +
+            '<div class="crumbs"><a href="#/">Home</a> / Sources</div>' +
+            '<h1>Sources & References</h1>' +
+            '<p>Academic references, course bibliography, and external resources organized by course.</p>' +
+          '</div>' +
+          tabsHtml +
+          '<div class="sources-container">' +
+            cardsHtml +
+          '</div>' +
+        '</div>';
+
+      app.querySelectorAll(".sources-tab-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activeFilter = btn.dataset.tab;
+          if (activeFilter === "all") {
+            history.replaceState(null, "", "#/sources");
+          } else {
+            history.replaceState(null, "", "#/sources/" + activeFilter);
+          }
+          render();
+        });
+      });
+    }
+
+    render();
     window.scrollTo(0, 0);
   }
 
@@ -1436,8 +1511,8 @@
     }
     if (parts[0] === "sources" || parts[0] === "source") {
       app.dataset.course = "";
-      setTitle("Sources");
-      sourcesPage();
+      setTitle("Sources & References");
+      sourcesPage(parts[1]);
       window.scrollTo(0, 0);
       return;
     }

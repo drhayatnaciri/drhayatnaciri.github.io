@@ -129,6 +129,8 @@
     }
 
     function renderClassCard(c) {
+      var hasContent = (c.description || (c.cohorts && c.cohorts.length) || (c.schedule && c.schedule.length) || (c.modules && c.modules.length) || (c.assessments && c.assessments.length) || (c.units && c.units.length));
+
       var scheduleRows = (c.schedule || []).map(function (s) {
         return '<tr class="class-sched-row">' +
           '<td class="sched-day-time"><strong>' + esc(s.day) + '</strong><span class="sched-time">' + esc(s.time) + '</span></td>' +
@@ -173,54 +175,62 @@
         return '<span class="class-cohort-chip">🎓 ' + esc(ch) + '</span>';
       }).join("");
 
+      var bodyHtml = '';
+      if (!hasContent) {
+        bodyHtml = '<div class="empty class-empty-box" style="margin:20px 0;border:1px dashed var(--line);border-radius:12px;padding:36px 20px;text-align:center;background:var(--surface)">' +
+          '<div style="font-size:2rem;margin-bottom:8px">📖</div>' +
+          '<h3 style="margin:0 0 6px;font-size:1.15rem;color:var(--navy)">Content coming soon</h3>' +
+          '<p style="margin:0;color:var(--muted);font-size:.95rem">The syllabus, units, and class material for <strong>' + esc(c.title || c.year) + '</strong> will be added here.</p>' +
+        '</div>';
+      } else {
+        bodyHtml =
+          (c.description ? '<p class="class-lead-desc">' + esc(c.description) + '</p>' : '') +
+          (c.cohorts && c.cohorts.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">🎯</span> Enrolled Cohorts & University Programs</h3>' +
+              '<div class="class-cohorts-list">' + cohortsHtml + '</div>' +
+            '</div>' : '') +
+          (c.schedule && c.schedule.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">📅</span> Weekly Class Schedule & Timetable</h3>' +
+              '<div class="class-schedule-table-wrap">' +
+                '<table class="class-schedule-table">' +
+                  '<thead>' +
+                    '<tr><th>Day & Time</th><th>Subject / Module</th><th>Room / Location</th><th>Session Format</th></tr>' +
+                  '</thead>' +
+                  '<tbody>' + scheduleRows + '</tbody>' +
+                '</table>' +
+              '</div>' +
+            '</div>' : '') +
+          (c.modules && c.modules.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">📚</span> Enrolled Course Modules & Reading Units</h3>' +
+              '<div class="class-modules-grid">' + modulesHtml + '</div>' +
+            '</div>' : '') +
+          (c.assessments && c.assessments.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">📋</span> Assessment & Continuous Evaluation</h3>' +
+              '<div class="class-assessments-grid">' + assessmentsHtml + '</div>' +
+            '</div>' : '') +
+          '<div class="class-footer-actions">' +
+            '<a class="btn primary" href="#/courses">Browse All Slides →</a>' +
+            '<a class="btn ghost" href="#/quizzes">Self-Assessment Quizzes →</a>' +
+            '<a class="btn ghost" href="#/announcements">Class Announcements →</a>' +
+          '</div>';
+      }
+
       return '<article class="class-card" id="class-' + esc(c.id) + '" data-class="' + esc(c.id) + '">' +
         '<header class="class-header">' +
           '<div class="class-title-meta">' +
-            '<div class="class-badge-row">' +
-              '<span class="class-cohort-badge">' + esc(c.badge) + '</span>' +
-              '<span class="class-cycle-tag">' + esc(c.level) + '</span>' +
-            '</div>' +
-            '<h2 class="class-main-title">' + esc(c.year) + '</h2>' +
-            '<p class="class-tagline">' + esc(c.tagline) + '</p>' +
+            (c.badge || c.level ? '<div class="class-badge-row">' +
+              (c.badge ? '<span class="class-cohort-badge">' + esc(c.badge) + '</span>' : '') +
+              (c.level ? '<span class="class-cycle-tag">' + esc(c.level) + '</span>' : '') +
+            '</div>' : '') +
+            '<h2 class="class-main-title">' + esc(c.title || c.year) + '</h2>' +
+            (c.tagline ? '<p class="class-tagline">' + esc(c.tagline) + '</p>' : '') +
           '</div>' +
         '</header>' +
-
-        '<div class="class-body">' +
-          '<p class="class-lead-desc">' + esc(c.description) + '</p>' +
-
-          '<div class="class-section-block">' +
-            '<h3 class="class-block-heading"><span class="heading-icon">🎯</span> Enrolled Cohorts & University Programs</h3>' +
-            '<div class="class-cohorts-list">' + cohortsHtml + '</div>' +
-          '</div>' +
-
-          '<div class="class-section-block">' +
-            '<h3 class="class-block-heading"><span class="heading-icon">📅</span> Weekly Class Schedule & Timetable</h3>' +
-            '<div class="class-schedule-table-wrap">' +
-              '<table class="class-schedule-table">' +
-                '<thead>' +
-                  '<tr><th>Day & Time</th><th>Subject / Module</th><th>Room / Location</th><th>Session Format</th></tr>' +
-                '</thead>' +
-                '<tbody>' + scheduleRows + '</tbody>' +
-              '</table>' +
-            '</div>' +
-          '</div>' +
-
-          '<div class="class-section-block">' +
-            '<h3 class="class-block-heading"><span class="heading-icon">📚</span> Enrolled Course Modules & Reading Units</h3>' +
-            '<div class="class-modules-grid">' + modulesHtml + '</div>' +
-          '</div>' +
-
-          '<div class="class-section-block">' +
-            '<h3 class="class-block-heading"><span class="heading-icon">📋</span> Assessment & Continuous Evaluation</h3>' +
-            '<div class="class-assessments-grid">' + assessmentsHtml + '</div>' +
-          '</div>' +
-
-          '<div class="class-footer-actions">' +
-            '<a class="btn primary" href="#/courses">Browse All Slides for ' + esc(c.year) + ' →</a>' +
-            '<a class="btn ghost" href="#/quizzes">Self-Assessment Quizzes →</a>' +
-            '<a class="btn ghost" href="#/announcements">Class Announcements →</a>' +
-          '</div>' +
-        '</div>' +
+        '<div class="class-body">' + bodyHtml + '</div>' +
       '</article>';
     }
 
@@ -238,7 +248,7 @@
         '</button>' +
         classes.map(function (c) {
           return '<button class="classes-tab-btn ' + (activeFilter === c.id ? "active" : "") + '" data-tab="' + esc(c.id) + '" type="button">' +
-            esc(c.year) + ' <small>(' + esc(c.badge) + ')</small>' +
+            esc(c.title || c.year) + (c.badge ? ' <small>(' + esc(c.badge) + ')</small>' : '') +
           '</button>';
         }).join("") +
       '</div>';
@@ -248,7 +258,7 @@
           '<div class="course-head" style="padding-top:0">' +
             '<div class="crumbs"><a href="#/">Home</a> / Classes</div>' +
             '<h1>Academic Classes & Units</h1>' +
-            '<p>Official curriculum, weekly timetables, lecture slides, and assessment guidelines for 3ème année (Licence) and 4ème année (Master) taught by Dr. Hayat Naciri.</p>' +
+            '<p>Official curriculum, weekly timetables, lecture slides, and assessment guidelines for 3ème année and 4ème année.</p>' +
           '</div>' +
           tabsHtml +
           '<div class="classes-container">' +

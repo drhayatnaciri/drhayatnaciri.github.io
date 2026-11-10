@@ -93,6 +93,7 @@
           '<div class="actions">' +
             '<a class="btn primary" href="#/courses">Course material</a>' +
             '<a class="btn ghost" href="#/classes">Academic classes</a>' +
+            '<a class="btn ghost" href="#/sources">Sources</a>' +
             '<a class="btn ghost" href="#/quizzes">Reading quizzes</a>' +
             '<a class="btn ghost" href="#/announcements">Announcements</a>' +
             '<a class="btn ghost" href="#/comments">Student feedback</a>' +
@@ -280,6 +281,26 @@
     }
 
     render();
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- sources page ----------
+  function sourcesPage() {
+    var sources = S.sources || [];
+    var html =
+      '<div class="wrap sources-wrap" style="padding:40px 16px 60px">' +
+        '<div class="course-head" style="padding-top:0">' +
+          '<div class="crumbs"><a href="#/">Home</a> / Sources</div>' +
+          '<h1>Sources</h1>' +
+          '<p>Academic references, course bibliography, and external resources.</p>' +
+        '</div>' +
+        '<div class="empty sources-empty-box" style="margin:24px 0;border:1px dashed var(--line);border-radius:14px;padding:48px 20px;text-align:center;background:var(--surface)">' +
+          '<div style="font-size:2.2rem;margin-bottom:10px">📚</div>' +
+          '<h3 style="margin:0 0 8px;font-size:1.2rem;color:var(--navy);font-family:var(--serif)">Sources & References</h3>' +
+          '<p style="margin:0;color:var(--muted);font-size:.95rem">Content for this section will be added here.</p>' +
+        '</div>' +
+      '</div>';
+    app.innerHTML = html;
     window.scrollTo(0, 0);
   }
 
@@ -1382,6 +1403,7 @@
     document.querySelectorAll("[data-nav]").forEach(function (a) {
       var n = a.dataset.nav;
       if (parts[0] === "classes" || parts[0] === "class") a.classList.toggle("on", n === "classes");
+      else if (parts[0] === "sources" || parts[0] === "source") a.classList.toggle("on", n === "sources");
       else if (parts[0] === "quizzes" || parts[0] === "quiz") a.classList.toggle("on", n === "quizzes");
       else if (parts[0] === "announcements") a.classList.toggle("on", n === "announcements");
       else if (parts[0] === "comments") a.classList.toggle("on", n === "comments");
@@ -1409,6 +1431,13 @@
       app.dataset.course = "";
       setTitle("Classes & Academic Cohorts");
       classesPage(parts[1]);
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (parts[0] === "sources" || parts[0] === "source") {
+      app.dataset.course = "";
+      setTitle("Sources");
+      sourcesPage();
       window.scrollTo(0, 0);
       return;
     }

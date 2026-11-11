@@ -1120,21 +1120,6 @@ window.SITE = {
    ]
   }
  ],
- "classes": [
-  {
-   "id": "3eme-annee",
-   "title": "3ème année",
-   "year": "3ème année",
-   "units": []
-  },
-  {
-   "id": "4eme-annee",
-   "title": "4ème année",
-   "year": "4ème année",
-   "units": []
-  }
- ],
- "sources": [],
  "quizzes": {
   "public-speaking--foundations": {
    "title": "Unit 1: Foundations of Public Speaking",

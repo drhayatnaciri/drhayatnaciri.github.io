@@ -92,6 +92,8 @@
           '<ul class="chips">' + p.interests.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>" +
           '<div class="actions">' +
             '<a class="btn primary" href="#/courses">Course material</a>' +
+            '<a class="btn ghost" href="#/classes">Academic classes</a>' +
+            '<a class="btn ghost" href="#/sources">Sources</a>' +
             '<a class="btn ghost" href="#/quizzes">Reading quizzes</a>' +
             '<a class="btn ghost" href="#/announcements">Announcements</a>' +
             '<a class="btn ghost" href="#/comments">Student feedback</a>' +
@@ -116,6 +118,264 @@
         '</div>' +
         courseCards() +
       '</div>';
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- classes page ----------
+  function classesPage(filterId) {
+    var classes = S.classes || [];
+    var activeFilter = filterId || "all";
+    if (activeFilter !== "all" && !classes.some(function (c) { return c.id === activeFilter; })) {
+      activeFilter = "all";
+    }
+
+    function renderClassCard(c) {
+      var hasContent = (c.description || (c.cohorts && c.cohorts.length) || (c.schedule && c.schedule.length) || (c.modules && c.modules.length) || (c.assessments && c.assessments.length) || (c.units && c.units.length));
+
+      var scheduleRows = (c.schedule || []).map(function (s) {
+        return '<tr class="class-sched-row">' +
+          '<td class="sched-day-time"><strong>' + esc(s.day) + '</strong><span class="sched-time">' + esc(s.time) + '</span></td>' +
+          '<td class="sched-course"><strong>' + esc(s.course) + '</strong></td>' +
+          '<td class="sched-room"><span class="sched-room-badge">📍 ' + esc(s.room) + '</span></td>' +
+          '<td class="sched-type"><span class="sched-type-tag">' + esc(s.type) + '</span></td>' +
+        '</tr>';
+      }).join("");
+
+      var modulesHtml = (c.modules || []).map(function (m) {
+        var featured = (m.featuredUnits || []).map(function (u) {
+          return '<a class="class-unit-pill" href="#/course/' + esc(u.courseId) + '/' + esc(u.id) + '">' +
+            '📑 ' + esc(u.title) + '</a>';
+        }).join("");
+
+        return '<div class="class-module-card">' +
+          '<div class="class-module-head">' +
+            (m.code ? '<span class="code">' + esc(m.code) + '</span>' : '') +
+            '<h4>' + esc(m.title) + '</h4>' +
+            '<span class="badge neutral">' + m.unitsCount + ' Units · ' + m.docsCount + ' Docs</span>' +
+          '</div>' +
+          '<p class="class-module-desc">' + esc(m.description) + '</p>' +
+          (featured ? '<div class="class-units-box"><span class="class-units-label">Key Lecture Units:</span><div class="class-units-list">' + featured + '</div></div>' : '') +
+          '<div class="class-module-actions">' +
+            '<a class="btn primary btn-sm" href="#/course/' + esc(m.courseId) + '">Explore Course Material →</a>' +
+            (m.quizLink ? '<a class="btn ghost btn-sm" href="' + esc(m.quizLink) + '">Practice Quizzes →</a>' : '') +
+          '</div>' +
+        '</div>';
+      }).join("");
+
+      var assessmentsHtml = (c.assessments || []).map(function (a) {
+        return '<div class="class-assessment-card">' +
+          '<div class="assessment-head">' +
+            '<strong>' + esc(a.title) + '</strong>' +
+            '<span class="assessment-weight">' + esc(a.weight) + '</span>' +
+          '</div>' +
+          '<p>' + esc(a.desc) + '</p>' +
+        '</div>';
+      }).join("");
+
+      var cohortsHtml = (c.cohorts || []).map(function (ch) {
+        return '<span class="class-cohort-chip">🎓 ' + esc(ch) + '</span>';
+      }).join("");
+
+      var bodyHtml = '';
+      if (!hasContent) {
+        bodyHtml = '<div class="empty class-empty-box" style="margin:20px 0;border:1px dashed var(--line);border-radius:12px;padding:36px 20px;text-align:center;background:var(--surface)">' +
+          '<div style="font-size:2rem;margin-bottom:8px">📖</div>' +
+          '<h3 style="margin:0 0 6px;font-size:1.15rem;color:var(--navy)">Content coming soon</h3>' +
+          '<p style="margin:0;color:var(--muted);font-size:.95rem">The syllabus, units, and class material for <strong>' + esc(c.title || c.year) + '</strong> will be added here.</p>' +
+        '</div>';
+      } else {
+        bodyHtml =
+          (c.description ? '<p class="class-lead-desc">' + esc(c.description) + '</p>' : '') +
+          (c.cohorts && c.cohorts.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">🎯</span> Enrolled Cohorts & University Programs</h3>' +
+              '<div class="class-cohorts-list">' + cohortsHtml + '</div>' +
+            '</div>' : '') +
+          (c.schedule && c.schedule.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">📅</span> Weekly Class Schedule & Timetable</h3>' +
+              '<div class="class-schedule-table-wrap">' +
+                '<table class="class-schedule-table">' +
+                  '<thead>' +
+                    '<tr><th>Day & Time</th><th>Subject / Module</th><th>Room / Location</th><th>Session Format</th></tr>' +
+                  '</thead>' +
+                  '<tbody>' + scheduleRows + '</tbody>' +
+                '</table>' +
+              '</div>' +
+            '</div>' : '') +
+          (c.modules && c.modules.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">📚</span> Enrolled Course Modules & Reading Units</h3>' +
+              '<div class="class-modules-grid">' + modulesHtml + '</div>' +
+            '</div>' : '') +
+          (c.assessments && c.assessments.length ?
+            '<div class="class-section-block">' +
+              '<h3 class="class-block-heading"><span class="heading-icon">📋</span> Assessment & Continuous Evaluation</h3>' +
+              '<div class="class-assessments-grid">' + assessmentsHtml + '</div>' +
+            '</div>' : '') +
+          '<div class="class-footer-actions">' +
+            '<a class="btn primary" href="#/courses">Browse All Slides →</a>' +
+            '<a class="btn ghost" href="#/quizzes">Self-Assessment Quizzes →</a>' +
+            '<a class="btn ghost" href="#/announcements">Class Announcements →</a>' +
+          '</div>';
+      }
+
+      return '<article class="class-card" id="class-' + esc(c.id) + '" data-class="' + esc(c.id) + '">' +
+        '<header class="class-header">' +
+          '<div class="class-title-meta">' +
+            (c.badge || c.level ? '<div class="class-badge-row">' +
+              (c.badge ? '<span class="class-cohort-badge">' + esc(c.badge) + '</span>' : '') +
+              (c.level ? '<span class="class-cycle-tag">' + esc(c.level) + '</span>' : '') +
+            '</div>' : '') +
+            '<h2 class="class-main-title">' + esc(c.title || c.year) + '</h2>' +
+            (c.tagline ? '<p class="class-tagline">' + esc(c.tagline) + '</p>' : '') +
+          '</div>' +
+        '</header>' +
+        '<div class="class-body">' + bodyHtml + '</div>' +
+      '</article>';
+    }
+
+    function render() {
+      var filtered = classes.filter(function (c) {
+        if (activeFilter === "all") return true;
+        return c.id === activeFilter;
+      });
+
+      var cardsHtml = filtered.map(renderClassCard).join("");
+
+      var tabsHtml = '<div class="classes-filter-bar" role="tablist">' +
+        '<button class="classes-tab-btn ' + (activeFilter === "all" ? "active" : "") + '" data-tab="all" type="button">' +
+          'All Classes (' + classes.length + ')' +
+        '</button>' +
+        classes.map(function (c) {
+          return '<button class="classes-tab-btn ' + (activeFilter === c.id ? "active" : "") + '" data-tab="' + esc(c.id) + '" type="button">' +
+            esc(c.title || c.year) + (c.badge ? ' <small>(' + esc(c.badge) + ')</small>' : '') +
+          '</button>';
+        }).join("") +
+      '</div>';
+
+      app.innerHTML =
+        '<div class="wrap classes-wrap">' +
+          '<div class="course-head" style="padding-top:0">' +
+            '<div class="crumbs"><a href="#/">Home</a> / Classes</div>' +
+            '<h1>Academic Classes & Units</h1>' +
+            '<p>Course materials and units for 3ème année and 4ème année.</p>' +
+          '</div>' +
+          tabsHtml +
+          '<div class="classes-container">' +
+            cardsHtml +
+          '</div>' +
+        '</div>';
+
+      app.querySelectorAll(".classes-tab-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activeFilter = btn.dataset.tab;
+          if (activeFilter === "all") {
+            history.replaceState(null, "", "#/classes");
+          } else {
+            history.replaceState(null, "", "#/classes/" + activeFilter);
+          }
+          render();
+        });
+      });
+    }
+
+    render();
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- sources page ----------
+  function sourcesPage(filterId) {
+    var courses = S.courses || [];
+    var activeFilter = filterId || "all";
+    if (activeFilter !== "all" && !courses.some(function (c) { return c.id === activeFilter; })) {
+      activeFilter = "all";
+    }
+
+    function renderSourceCard(c) {
+      var courseSources = (S.sources || []).filter(function (s) {
+        return s.courseId === c.id;
+      });
+
+      var bodyHtml = '';
+      if (!courseSources.length) {
+        bodyHtml = '<div class="empty source-empty-box" style="margin:4px 0 0;border:1px dashed var(--line);border-radius:12px;padding:36px 20px;text-align:center;background:var(--bg)">' +
+          '<div style="font-size:2rem;margin-bottom:8px">📚</div>' +
+          '<h3 style="margin:0 0 6px;font-size:1.15rem;color:var(--navy);font-family:var(--serif)">No sources added yet</h3>' +
+          '<p style="margin:0;color:var(--muted);font-size:.95rem">Academic sources, bibliography, and references for <strong>' + esc(c.title) + '</strong> will be added here.</p>' +
+        '</div>';
+      } else {
+        bodyHtml = '<div class="source-items-list">' +
+          courseSources.map(function (s) {
+            return '<div class="source-item-card">' +
+              '<h4>' + esc(s.title) + '</h4>' +
+              (s.author ? '<p class="source-author">' + esc(s.author) + (s.year ? ' (' + esc(s.year) + ')' : '') + '</p>' : '') +
+              (s.description ? '<p class="source-desc">' + esc(s.description) + '</p>' : '') +
+              (s.url ? '<a class="source-link" href="' + esc(s.url) + '" target="_blank" rel="noopener">Access Resource ↗</a>' : '') +
+            '</div>';
+          }).join("") +
+        '</div>';
+      }
+
+      return '<article class="source-card" id="source-course-' + esc(c.id) + '" data-course="' + esc(c.id) + '">' +
+        '<header class="source-card-header">' +
+          '<div class="source-card-meta">' +
+            (c.code ? '<span class="code">' + esc(c.code) + '</span>' : '') +
+            '<span class="source-course-badge">Course Sources</span>' +
+          '</div>' +
+          '<h2 class="source-card-title">' + esc(c.title) + '</h2>' +
+          (c.blurb ? '<p class="source-card-blurb">' + esc(c.blurb) + '</p>' : '') +
+        '</header>' +
+        '<div class="source-card-body">' + bodyHtml + '</div>' +
+      '</article>';
+    }
+
+    function render() {
+      var filtered = courses.filter(function (c) {
+        if (activeFilter === "all") return true;
+        return c.id === activeFilter;
+      });
+
+      var cardsHtml = filtered.map(renderSourceCard).join("");
+
+      var tabsHtml = '<div class="sources-filter-bar" role="tablist">' +
+        '<button class="sources-tab-btn ' + (activeFilter === "all" ? "active" : "") + '" data-tab="all" type="button">' +
+          'All Courses (' + courses.length + ')' +
+        '</button>' +
+        courses.map(function (c) {
+          return '<button class="sources-tab-btn ' + (activeFilter === c.id ? "active" : "") + '" data-tab="' + esc(c.id) + '" type="button">' +
+            esc(c.title) +
+          '</button>';
+        }).join("") +
+      '</div>';
+
+      app.innerHTML =
+        '<div class="wrap sources-wrap">' +
+          '<div class="course-head" style="padding-top:0">' +
+            '<div class="crumbs"><a href="#/">Home</a> / Sources</div>' +
+            '<h1>Sources & References</h1>' +
+            '<p>Academic references, course bibliography, and external resources organized by course.</p>' +
+          '</div>' +
+          tabsHtml +
+          '<div class="sources-container">' +
+            cardsHtml +
+          '</div>' +
+        '</div>';
+
+      app.querySelectorAll(".sources-tab-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activeFilter = btn.dataset.tab;
+          if (activeFilter === "all") {
+            history.replaceState(null, "", "#/sources");
+          } else {
+            history.replaceState(null, "", "#/sources/" + activeFilter);
+          }
+          render();
+        });
+      });
+    }
+
+    render();
     window.scrollTo(0, 0);
   }
 
@@ -1217,7 +1477,9 @@
     var parts = location.hash.replace(/^#\/?/, "").split("/");
     document.querySelectorAll("[data-nav]").forEach(function (a) {
       var n = a.dataset.nav;
-      if (parts[0] === "quizzes" || parts[0] === "quiz") a.classList.toggle("on", n === "quizzes");
+      if (parts[0] === "classes" || parts[0] === "class") a.classList.toggle("on", n === "classes");
+      else if (parts[0] === "sources" || parts[0] === "source") a.classList.toggle("on", n === "sources");
+      else if (parts[0] === "quizzes" || parts[0] === "quiz") a.classList.toggle("on", n === "quizzes");
       else if (parts[0] === "announcements") a.classList.toggle("on", n === "announcements");
       else if (parts[0] === "comments") a.classList.toggle("on", n === "comments");
       else if (parts[0] === "course" || parts[0] === "courses") a.classList.toggle("on", n === "courses");
@@ -1238,6 +1500,20 @@
       if (app.dataset.course !== parts[1]) { coursePage(parts[1]); app.dataset.course = parts[1]; window.scrollTo(0, 0); }
       var u = parts[2] && document.getElementById("unit-" + parts[2]);
       if (u) u.scrollIntoView();
+      return;
+    }
+    if (parts[0] === "classes" || parts[0] === "class") {
+      app.dataset.course = "";
+      setTitle("Classes & Academic Cohorts");
+      classesPage(parts[1]);
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (parts[0] === "sources" || parts[0] === "source") {
+      app.dataset.course = "";
+      setTitle("Sources & References");
+      sourcesPage(parts[1]);
+      window.scrollTo(0, 0);
       return;
     }
     if (parts[0] === "quizzes") {
